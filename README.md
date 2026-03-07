@@ -1,24 +1,31 @@
-# TaCZ Mechanics
+# 🔫 TaCZ Mechanics
 
-A military simulation enhancement mod for Minecraft 1.21.1 + NeoForge, extending the Timeless and Classics Zero (TaCZ) gun mod with realistic ballistics and immersive mechanics.
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62b47a.svg?logo=minecraft)](https://minecraft.net)
+[![NeoForge](https://img.shields.io/badge/NeoForge-21.1.x-orange.svg)](https://neoforged.net)
+[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
+[![TaCZ](https://img.shields.io/badge/Requires-TaCZ-red.svg)](https://modrinth.com/mod/tacz)
 
-## Features
+> **Military simulation enhancement mod for TaCZ** — Realistic ballistics, ricochet, suppression, and immersive gun mechanics.
+
+---
+
+## ✨ Features
 
 ### 🎯 Ballistics & Penetration
-- **Ricochet System**: Bullets can bounce off hard surfaces at shallow angles
-- **Penetration System**: Bullets pierce through blocks with damage and velocity reduction
+- **Ricochet System** — Bullets bounce off hard surfaces at shallow angles
+- **Penetration System** — Bullets pierce through blocks with damage/velocity reduction
 - Configurable angles, chances, speed multipliers, and max bounces
 
 ### 🔊 Distant Fire Sounds
 - Dynamic gunfire sounds based on distance:
-  - Close range: Full sound
-  - Medium/Far/Very far: Progressive muffling and reverb
+  - **Close**: Full sound
+  - **Medium/Far/Very far**: Progressive muffling and reverb
 - Per-caliber configuration via JSON
 - Auto-fallback to default sounds
 
 ### 💨 Bullet Whizz & Suppression
-- **Bullet Whizz**: Fly-by sounds when bullets pass near players
-- **Suppression System**: 
+- **Bullet Whizz** — Fly-by sounds when bullets pass near players
+- **Suppression System**:
   - Visual effects (blur, vignette, desaturation)
   - Camera shake (aim punch)
   - Intensity based on proximity and bullet speed
@@ -30,15 +37,33 @@ A military simulation enhancement mod for Minecraft 1.21.1 + NeoForge, extending
 - Optional crosshair following
 
 ### 🏃 Movement System
-- **Crawling**: Reduced height/eye level for going prone
-- **Sitting**: Adjusted dimensions for seated positions
+- **Crawling** — Reduced height for going prone
+- **Sitting** — Adjusted dimensions for seated positions
 - Configurable heights and eye levels
 
 ### ✨ Ricochet Effects
 - Particle effects (sparks) when bullets ricochet
-- Configurable per-block-type via JSON particle configs
+- Configurable per-block-type via JSON
 
-## Configuration
+---
+
+## 📸 Gallery
+
+<!-- Add screenshots here -->
+*Coming soon: Screenshots and video previews*
+
+---
+
+## 🛠️ Installation
+
+1. Install **NeoForge 21.1.x** for Minecraft 1.21.1
+2. Download and install **[TaCZ](https://modrinth.com/mod/tacz)**
+3. Download **TaCZ Mechanics** and place in `mods/` folder
+4. Launch the game!
+
+---
+
+## ⚙️ Configuration
 
 All features are configurable via `tacz_mechanics-server.toml`:
 
@@ -135,9 +160,10 @@ Create custom configs in your resource pack:
 
 ## License
 
-All rights reserved.
+Licensed under [GNU General Public License v3.0](LICENSE) © 2024-2025 Nikita Liko
 
 ## Credits
 
 - **TaCZ**: Timeless and Classics Zero team for the base gun mod
 - **WarBorn Pack**: Liko's custom gun pack included
+- **Veil**: Rendering library for advanced visual effects
