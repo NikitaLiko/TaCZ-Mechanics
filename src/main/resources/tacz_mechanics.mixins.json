@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "ru.liko.tacz_mechanics.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "WhizzEntityKineticBulletMixin",
+    "RicochetEntityKineticBulletMixin",
+    "PierceEntityKineticBulletMixin",
+    "EntityKineticBulletStartPosAccessorMixin",
+    "FreeAimShootMixin",
+    "movement.PlayerDimensionsMixin",
+    "movement.PlayerEyePositionMixin",
+    "movement.BulletLeanOffsetMixin",
+    "movement.EntityDimensionsAccessor"
+  ],
+    "client": [
+    "SoundEngineMixin",
+    "SoundPlayManagerMixin",
+    "TweaksSoundPlayManagerMixin",
+    "HideHitMarkersMixin",
+    "HideGunCrosshairMixin",
+    "FreeAimCrosshairMixin",
+    "FreeAimGunModelMixin",
+    "PostChainAccessor",
+    "SuppressionGameRendererMixin",
+    "SuppressionCameraShakeMixin",
+    "movement.HumanoidModelMixin",
+    "movement.CameraOffsetMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

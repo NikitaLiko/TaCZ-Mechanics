@@ -1,0 +1,14 @@
+{
+  "close_distance": 50,
+  "mid_distance": 150,
+  "far_distance": 350,
+  "very_far_distance": 600,
+  "close_sound": "tacztweaks:distant/30-06/close",
+  "mid_sound": "tacztweaks:distant/30-06/mid",
+  "far_sound": "tacztweaks:distant/30-06/far",
+  "very_far_sound": "tacztweaks:distant/30-06/veryfar",
+  "close_volume": 1.0,
+  "mid_volume": 1.2,
+  "far_volume": 1.4,
+  "very_far_volume": 1.6
+}

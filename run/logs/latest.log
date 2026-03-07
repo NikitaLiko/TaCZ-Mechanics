@@ -1,0 +1,76 @@
+[21февр.2026 14:03:51.900] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.42, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.219, --fml.neoFormVersion, 20240808.144430, --nogui]
+[21февр.2026 14:03:51.903] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.7+8-LTS-245
+[21февр.2026 14:03:51.905] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.7 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[21февр.2026 14:03:52.030] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
+[21февр.2026 14:03:52.089] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/kniki/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%2394!/ Service=ModLauncher Env=SERVER
+[21февр.2026 14:03:52.588] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 6 dependencies adding them to mods collection
+[21февр.2026 14:03:52.590] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.219 (neoforge)
+		TaCZ Mechanics 0.1.0 (tacz_mechanics)
+		Timeless & Classics Guns: Zero 1.1.7-hotfix-r1 (tacz)
+[21февр.2026 14:03:53.415] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[21февр.2026 14:03:53.420] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[21февр.2026 14:03:53.429] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, ., --nogui]
+[21февр.2026 14:03:53.506] [main/WARN] [mixin/]: Reference map 'tacz.refmap.json' for tacz.mixins.json could not be read. If this is a development environment you can ignore this message
+[21февр.2026 14:03:53.510] [main/WARN] [mixin/]: Reference map 'tacz.refmap.json' for tacz.compat.acceleratedrendering.mixins.json could not be read. If this is a development environment you can ignore this message
+[21февр.2026 14:03:53.618] [main/WARN] [mixin/]: Error loading class: com/mrcrayfish/controllable/client/binding/context/BindingContext (java.lang.ClassNotFoundException: com.mrcrayfish.controllable.client.binding.context.BindingContext)
+[21февр.2026 14:03:54.400] [main/WARN] [oshi.driver.windows.perfmon.PerfmonDisabled/]: Invalid registry value type detected for PerfOS counters. Should be REG_DWORD. Ignoring: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters.
+[21февр.2026 14:03:54.833] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[21февр.2026 14:04:00.024] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21февр.2026 14:04:00.025] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21февр.2026 14:04:00.028] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21февр.2026 14:04:00.030] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[21февр.2026 14:04:00.030] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[21февр.2026 14:04:00.104] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.219, for MC 1.21.1
+[21февр.2026 14:04:00.505] [modloading-worker-0/INFO] [ru.liko.tacz_mechanics.Tacz_mechanics/]: HELLO FROM COMMON SETUP
+[21февр.2026 14:04:00.505] [modloading-worker-0/INFO] [ru.liko.tacz_mechanics.Tacz_mechanics/]: TaCZ Mechanics initialized with Tweaks and Distant Fire support
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:shoot_cool_down for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:melee_cool_down for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:reload_state for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:aiming_progress for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:draw_cool_down for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:is_aiming for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:sprint_time for minecraft:living_entity
+[21февр.2026 14:04:00.538] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:is_bolting for minecraft:living_entity
+[21февр.2026 14:04:00.539] [modloading-sync-worker/INFO] [tacz/SYNCED_ENTITY_DATA_TAC_COPY]: Registered synced data key tacz:throwable_using for minecraft:living_entity
+[21февр.2026 14:04:00.713] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[21февр.2026 14:04:00.819] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/kniki/OneDrive/Desktop/NeoForge/TaCZ%20Mechanics/build/moddev/artifacts/neoforge-21.1.219.jar%23125!/assets/.mcassetsroot' uses unexpected schema
+[21февр.2026 14:04:00.820] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/kniki/OneDrive/Desktop/NeoForge/TaCZ%20Mechanics/build/moddev/artifacts/neoforge-21.1.219.jar%23125!/data/.mcassetsroot' uses unexpected schema
+[21февр.2026 14:04:07.230] [main/INFO] [tacz/GunPackFinder]: Start scanning for gun packs in C:\Users\kniki\OneDrive\Desktop\NeoForge\TaCZ Mechanics\run\tacz
+[21февр.2026 14:04:07.235] [main/INFO] [tacz/GunPackFinder]: - tacz_default_gun, Main namespace: tacz
+[21февр.2026 14:04:07.236] [main/INFO] [tacz/GunPackFinder]: Found 1 possible gunpack(s) and added them to resource set.
+[21февр.2026 14:04:08.340] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 1461 recipes
+[21февр.2026 14:04:08.509] [main/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1399 advancements
+[21февр.2026 14:04:08.510] [main/INFO] [ru.liko.tacz_mechanics.data.manager.BaseDataManager/]: Loaded 0 entries
+[21февр.2026 14:04:08.510] [main/INFO] [ru.liko.tacz_mechanics.data.manager.BaseDataManager/]: Loaded 0 entries
+[21февр.2026 14:04:08.512] [main/INFO] [ru.liko.tacz_mechanics.data.manager.BaseDataManager/]: Loaded 0 entries
+[21февр.2026 14:04:08.512] [main/INFO] [ru.liko.tacz_mechanics.data.manager.DistantFireManager/]: Loaded 0 distant fire configs
+[21февр.2026 14:04:08.512] [main/INFO] [ru.liko.tacz_mechanics.data.distant_fire.DistantFireSoundManager/]: [DistantFire] Loaded 0 caliber configurations
+[21февр.2026 14:04:08.512] [main/INFO] [ru.liko.tacz_mechanics.data.whizz.WhizzSoundManager/]: [WhizzSound] Loaded 0 whizz sound configs
+[21февр.2026 14:04:11.098] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting minecraft server version 1.21.1
+[21февр.2026 14:04:11.098] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Loading properties
+[21февр.2026 14:04:11.098] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Default game type: SURVIVAL
+[21февр.2026 14:04:11.098] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Generating keypair
+[21февр.2026 14:04:11.179] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Starting Minecraft server on *:25565
+[21февр.2026 14:04:11.231] [Server thread/INFO] [net.minecraft.server.network.ServerConnectionListener/]: Using default channel type
+[21февр.2026 14:04:11.272] [Server thread/WARN] [net.minecraft.server.dedicated.DedicatedServer/]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[21февр.2026 14:04:11.272] [Server thread/WARN] [net.minecraft.server.dedicated.DedicatedServer/]: The server will make no attempt to authenticate usernames. Beware.
+[21февр.2026 14:04:11.272] [Server thread/WARN] [net.minecraft.server.dedicated.DedicatedServer/]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[21февр.2026 14:04:11.272] [Server thread/WARN] [net.minecraft.server.dedicated.DedicatedServer/]: To change this, set "online-mode" to "true" in the server.properties file.
+[21февр.2026 14:04:11.332] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Preparing level "world"
+[21февр.2026 14:04:12.189] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[21февр.2026 14:04:12.731] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[21февр.2026 14:04:12.732] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[21февр.2026 14:04:13.200] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 51%
+[21февр.2026 14:04:13.730] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 51%
+[21февр.2026 14:04:14.250] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 51%
+[21февр.2026 14:04:14.690] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 51%
+[21февр.2026 14:04:15.160] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 2970 ms
+[21февр.2026 14:04:15.161] [Server thread/INFO] [net.minecraft.server.dedicated.DedicatedServer/]: Done (3.878s)! For help, type "help"
+[21февр.2026 14:04:15.190] [Server thread/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [tacz_mechanics]
+[21февр.2026 14:04:15.194] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[21февр.2026 14:04:15.194] [Server thread/INFO] [ru.liko.tacz_mechanics.Tacz_mechanics/]: HELLO from server starting

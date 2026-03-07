@@ -1,0 +1,15 @@
+{
+  "caliber_id": "tacz:338lapua",
+  "close_sound": "tacztweaks:distant/338lapua/close",
+  "mid_sound": "tacztweaks:distant/338lapua/mid",
+  "far_sound": "tacztweaks:distant/338lapua/far",
+  "very_far_sound": "tacztweaks:distant/338lapua/veryfar",
+  "close_max_distance": 150,
+  "mid_max_distance": 350,
+  "far_max_distance": 600,
+  "close_volume": 1.0,
+  "mid_volume": 0.85,
+  "far_volume": 0.65,
+  "very_far_volume": 0.4,
+  "transition_blocks": 30
+}

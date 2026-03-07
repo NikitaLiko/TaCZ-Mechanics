@@ -1,0 +1,27 @@
+{
+  "type": "block",
+  "target": [
+    {
+      "type": "ammo",
+      "values": [
+        "tacz:9x19mm",
+        "tacz:45acp"
+      ]
+    }
+  ],
+  "blocks": [
+    "#tacztweaks:metal"
+  ],
+  "pierce": {
+    "chance": 1.0,
+    "min_damage": 2.0,
+    "max_hardness": 5.0,
+    "damage_multiplier": 0.7,
+    "speed_multiplier": 0.7,
+    "spawn_hole": true,
+    "spawn_exit_hole": true,
+    "spawn_particles": true,
+    "spawn_sounds": true
+  },
+  "priority": 0
+}

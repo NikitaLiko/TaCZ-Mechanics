@@ -1,0 +1,10 @@
+{
+  "type": "block",
+  "blocks": [
+    "#tacztweaks:metal"
+  ],
+  "ricochet": {
+    "sound": "tacztweaks:generic.hit.metal",
+    "range": 10.0
+  }
+}

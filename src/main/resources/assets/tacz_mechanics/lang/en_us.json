@@ -1,0 +1,11 @@
+{
+  "itemGroup.tacz_mechanics": "TaCZ Mechanics",
+  "block.tacz_mechanics.example_block": "Example Block",
+  "item.tacz_mechanics.example_item": "Example Item",
+  "key.categories.tacz_mechanics": "TaCZ Mechanics",
+  "key.categories.tacz_mechanics.movement": "TaCZ Movement",
+  "key.tacz_mechanics.sit": "Sit / Slide",
+  "key.tacz_mechanics.crawl": "Crawl",
+  "key.tacz_mechanics.lean_left": "Lean Left",
+  "key.tacz_mechanics.lean_right": "Lean Right"
+}
