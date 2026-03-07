@@ -5,3 +5,5 @@ bin/
 *.class
 .idea/
 *.iml
+.eclipse/
+.vscode/
