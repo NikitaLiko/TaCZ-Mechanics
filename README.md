@@ -166,4 +166,3 @@ Licensed under [GNU General Public License v3.0](LICENSE) © 2024-2025 Nikita Li
 
 - **TaCZ**: Timeless and Classics Zero team for the base gun mod
 - **WarBorn Pack**: Liko's custom gun pack included
-- **Veil**: Rendering library for advanced visual effects
