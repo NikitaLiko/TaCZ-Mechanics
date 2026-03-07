@@ -2,7 +2,7 @@
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-62b47a.svg?logo=minecraft)](https://minecraft.net)
 [![NeoForge](https://img.shields.io/badge/NeoForge-21.1.x-orange.svg)](https://neoforged.net)
-[![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE)
 [![TaCZ](https://img.shields.io/badge/Requires-TaCZ-red.svg)](https://modrinth.com/mod/tacz)
 
 > **Military simulation enhancement mod for TaCZ** — Realistic ballistics, ricochet, suppression, and immersive gun mechanics.
@@ -160,7 +160,7 @@ Create custom configs in your resource pack:
 
 ## License
 
-This work is licensed under the [Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/). © 2024-2025 Nikita Liko
+Licensed under [GNU General Public License v3.0](LICENSE) © 2024-2025 Nikita Liko
 
 ## Credits
 
