@@ -1,0 +1,14 @@
+﻿{
+  "type": "block",
+  "blocks": [
+    "#taczmechanics:metal"
+  ],
+  "hit": {
+    "sound": "taczmechanics:generic.hit.metal",
+    "range": 8.0
+  },
+  "pierce": {
+    "sound": "taczmechanics:generic.hit.metal",
+    "range": 8.0
+  }
+}

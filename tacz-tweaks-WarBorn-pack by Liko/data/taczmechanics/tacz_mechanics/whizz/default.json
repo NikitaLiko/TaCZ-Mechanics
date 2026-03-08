@@ -1,0 +1,23 @@
+﻿{
+  "min_speed": 5.0,
+  "sounds": [
+    {
+      "threshold": 2.0,
+      "sound": "taczmechanics:generic.whizz.near",
+      "volume": 1.0,
+      "pitch": 1.0
+    },
+    {
+      "threshold": 5.0,
+      "sound": "taczmechanics:generic.whizz.mid",
+      "volume": 0.8,
+      "pitch": 1.0
+    },
+    {
+      "threshold": 10.0,
+      "sound": "taczmechanics:generic.whizz.far",
+      "volume": 0.6,
+      "pitch": 1.0
+    }
+  ]
+}

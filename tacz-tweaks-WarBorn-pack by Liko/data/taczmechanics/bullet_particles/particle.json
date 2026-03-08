@@ -1,0 +1,80 @@
+﻿{
+  "type": "block",
+  "hit": [
+    {
+      "particle": "minecraft:smoke",
+      "count": 3,
+      "speed": 0.02,
+      "delta": {
+        "type": "absolute",
+        "x": 0.12,
+        "y": 0.12,
+        "z": 0.12
+      }
+    },
+    {
+      "particle": "minecraft:white_ash",
+      "count": 20,
+      "speed": 0.15,
+      "position": {
+        "type": "relative",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "delta": {
+        "type": "absolute",
+        "x": 0.4,
+        "y": 0.2,
+        "z": 0.4
+      }
+    },
+    {
+      "particle": "minecraft:campfire_cosy_smoke",
+      "count": 2,
+      "speed": 0.01,
+      "delta": {
+        "type": "absolute",
+        "x": 0.1,
+        "y": 0.1,
+        "z": 0.1
+      }
+    },
+    {
+      "particle": "minecraft:block %s",
+      "count": 5,
+      "speed": 0.2,
+      "delta": {
+        "type": "absolute",
+        "x": 0.4,
+        "y": 0.0,
+        "z": 0.4
+      }
+    }
+  ],
+  "pierce": [
+    {
+      "particle": "minecraft:smoke",
+      "count": 2,
+      "speed": 0.02,
+      "delta": {
+        "type": "absolute",
+        "x": 0.08,
+        "y": 0.08,
+        "z": 0.08
+      }
+    },
+    {
+      "particle": "minecraft:block %s",
+      "count": 4,
+      "speed": 0.2,
+      "delta": {
+        "type": "absolute",
+        "x": 0.3,
+        "y": 0.0,
+        "z": 0.3
+      }
+    }
+  ],
+  "priority": 0
+}

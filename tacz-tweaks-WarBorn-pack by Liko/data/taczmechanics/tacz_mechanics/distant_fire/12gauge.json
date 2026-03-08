@@ -1,0 +1,14 @@
+﻿{
+  "close_distance": 40,
+  "mid_distance": 100,
+  "far_distance": 200,
+  "very_far_distance": 400,
+  "close_sound": "taczmechanics:distant/12gauge/close",
+  "mid_sound": "taczmechanics:distant/12gauge/mid",
+  "far_sound": "taczmechanics:distant/12gauge/far",
+  "very_far_sound": "taczmechanics:distant/12gauge/veryfar",
+  "close_volume": 1.0,
+  "mid_volume": 1.1,
+  "far_volume": 1.2,
+  "very_far_volume": 1.3
+}

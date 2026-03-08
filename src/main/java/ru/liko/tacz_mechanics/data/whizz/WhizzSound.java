@@ -60,8 +60,8 @@ public record WhizzSound(
     }
     
     public static final WhizzSound DEFAULT = new WhizzSound(5.0, List.of(
-        new DistanceSound(2.0, ResourceLocation.parse("tacztweaks:generic.whizz.near"), 1.0f, 1.0f),
-        new DistanceSound(5.0, ResourceLocation.parse("tacztweaks:generic.whizz.mid"), 1.0f, 1.0f),
-        new DistanceSound(10.0, ResourceLocation.parse("tacztweaks:generic.whizz.far"), 1.0f, 1.0f)
+        new DistanceSound(2.0, ResourceLocation.parse("taczmechanics:generic.whizz.near"), 1.0f, 1.0f),
+        new DistanceSound(5.0, ResourceLocation.parse("taczmechanics:generic.whizz.mid"), 1.0f, 1.0f),
+        new DistanceSound(10.0, ResourceLocation.parse("taczmechanics:generic.whizz.far"), 1.0f, 1.0f)
     ));
 }

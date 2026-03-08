@@ -1,0 +1,15 @@
+﻿{
+  "caliber_id": "tacz:127x99mm",
+  "close_sound": "taczmechanics:distant/12.7x99mm/close",
+  "mid_sound": "taczmechanics:distant/12.7x99mm/mid",
+  "far_sound": "taczmechanics:distant/12.7x99mm/far",
+  "very_far_sound": "taczmechanics:distant/12.7x99mm/veryfar",
+  "close_max_distance": 180,
+  "mid_max_distance": 400,
+  "far_max_distance": 700,
+  "close_volume": 1.0,
+  "mid_volume": 0.9,
+  "far_volume": 0.7,
+  "very_far_volume": 0.45,
+  "transition_blocks": 35
+}

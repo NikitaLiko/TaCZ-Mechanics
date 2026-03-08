@@ -1,0 +1,14 @@
+﻿{
+  "close_distance": 50,
+  "mid_distance": 150,
+  "far_distance": 350,
+  "very_far_distance": 600,
+  "close_sound": "taczmechanics:distant/65creedmoor/close",
+  "mid_sound": "taczmechanics:distant/65creedmoor/mid",
+  "far_sound": "taczmechanics:distant/65creedmoor/far",
+  "very_far_sound": "taczmechanics:distant/65creedmoor/veryfar",
+  "close_volume": 1.0,
+  "mid_volume": 1.2,
+  "far_volume": 1.4,
+  "very_far_volume": 1.6
+}

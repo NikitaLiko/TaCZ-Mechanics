@@ -36,13 +36,13 @@ public class DistantFireSoundManager extends SimpleJsonResourceReloadListener {
     }
     
     private void createDefaultConfig() {
-        // Default config using tacztweaks sounds (from user's resource pack)
+        // Default config using taczmechanics sounds (from user's resource pack)
         defaultConfig = new DistantFireSound(
             "default",
-            ResourceLocation.parse("tacztweaks:distant/close_distance"),
-            ResourceLocation.parse("tacztweaks:distant/medium_distance"),
-            ResourceLocation.parse("tacztweaks:distant/far_distance"),
-            Optional.of(ResourceLocation.parse("tacztweaks:distant/very_far_distance")),
+            ResourceLocation.parse("taczmechanics:distant/close_distance"),
+            ResourceLocation.parse("taczmechanics:distant/medium_distance"),
+            ResourceLocation.parse("taczmechanics:distant/far_distance"),
+            Optional.of(ResourceLocation.parse("taczmechanics:distant/very_far_distance")),
             120,  // closeMaxDistance
             250,  // midMaxDistance
             450,  // farMaxDistance
