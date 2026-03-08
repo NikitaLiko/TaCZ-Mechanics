@@ -19,7 +19,7 @@ import java.util.Optional;
 
 /**
  * Manages distant fire sound configurations loaded from JSON files.
- * Files are loaded from: data/<namespace>/tacz_mechanics/distant_fire/<caliber_id>.json
+ * Files are loaded from: data/<namespace>/distant_fire/<caliber_id>.json
  */
 public class DistantFireSoundManager extends SimpleJsonResourceReloadListener {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -31,7 +31,7 @@ public class DistantFireSoundManager extends SimpleJsonResourceReloadListener {
     private DistantFireSound defaultConfig;
     
     public DistantFireSoundManager() {
-        super(GSON, "tacz_mechanics/distant_fire");
+        super(GSON, "distant_fire");
         createDefaultConfig();
     }
     

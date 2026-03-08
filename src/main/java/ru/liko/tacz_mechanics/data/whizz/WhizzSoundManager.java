@@ -9,14 +9,13 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import org.slf4j.Logger;
-import ru.liko.tacz_mechanics.TaczMechanics;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Manages whizz sound configurations loaded from JSON data packs.
- * Path: data/<namespace>/tacz_mechanics/whizz/*.json
+ * Path: data/<namespace>/whizz/*.json
  */
 public class WhizzSoundManager extends SimpleJsonResourceReloadListener {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -28,7 +27,7 @@ public class WhizzSoundManager extends SimpleJsonResourceReloadListener {
     private WhizzSound defaultConfig = WhizzSound.DEFAULT;
     
     private WhizzSoundManager() {
-        super(GSON, TaczMechanics.MODID + "/whizz");
+        super(GSON, "whizz");
     }
     
     @Override
