@@ -121,6 +121,15 @@ public abstract class RicochetEntityKineticBulletMixin implements EntityKineticB
         taczMechanics$ricochetCount++;
         taczMechanics$pendingVelocity = newVelocity;
         bullet.setDeltaMovement(Vec3.ZERO);
+        // Сразу обновляем rotation, чтобы трассер правильно повернулся в том же тике
+        // (tick() читает getDeltaMovement() = ZERO, но yRot/xRot уже будут верными)
+        double dx = newVelocity.x;
+        double dz = newVelocity.z;
+        double dist = newVelocity.horizontalDistance();
+        bullet.setYRot((float) Math.toDegrees(Mth.atan2(dx, dz)));
+        bullet.setXRot((float) Math.toDegrees(Mth.atan2(newVelocity.y, dist)));
+        bullet.yRotO = bullet.getYRot();
+        bullet.xRotO = bullet.getXRot();
         taczMechanics$debug("ricochet: count=%s speed=%.3f->%.3f angle=%.2f chanceRoll=%.3f",
             taczMechanics$ricochetCount, speed, newVelocity.length(), incidenceDeg, chanceRoll);
 

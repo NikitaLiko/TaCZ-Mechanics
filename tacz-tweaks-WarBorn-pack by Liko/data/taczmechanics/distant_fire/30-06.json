@@ -1,14 +1,14 @@
-﻿{
-  "close_distance": 50,
-  "mid_distance": 150,
-  "far_distance": 350,
-  "very_far_distance": 600,
+{
+  "caliber_id": "tacz:30-06",
   "close_sound": "taczmechanics:distant/30-06/close",
   "mid_sound": "taczmechanics:distant/30-06/mid",
   "far_sound": "taczmechanics:distant/30-06/far",
   "very_far_sound": "taczmechanics:distant/30-06/veryfar",
+  "close_max_distance": 50,
+  "mid_max_distance": 150,
+  "far_max_distance": 350,
   "close_volume": 1.0,
-  "mid_volume": 1.2,
-  "far_volume": 1.4,
-  "very_far_volume": 1.6
+  "mid_volume": 0.9,
+  "far_volume": 0.7,
+  "very_far_volume": 0.5
 }

@@ -69,6 +69,11 @@ public class DistantFireSoundManager extends SimpleJsonResourceReloadListener {
                 
                 if (config != null) {
                     calibers.put(config.caliberId(), config);
+                    // Also register by file path (e.g. 30-06.json -> "30-06") for flexible matching
+                    String path = id.getPath();
+                    if (!path.equals(config.caliberId())) {
+                        calibers.putIfAbsent(path, config);
+                    }
                     if (Config.debug) {
                         LOGGER.debug("[DistantFire] Loaded config for caliber: {}", config.caliberId());
                     }
@@ -92,9 +97,30 @@ public class DistantFireSoundManager extends SimpleJsonResourceReloadListener {
     /**
      * Get distant fire config for a caliber ID.
      * Falls back to default if not found.
+     * Tries: exact match, path only, path with underscores as hyphens (30_06 -> 30-06).
      */
     public DistantFireSound getConfigForCaliber(String caliberId) {
-        return calibers.getOrDefault(caliberId, defaultConfig);
+        if (calibers.containsKey(caliberId)) {
+            return calibers.get(caliberId);
+        }
+        // Try path (e.g. "ammo/30_06" -> "30_06")
+        int slash = caliberId.lastIndexOf('/');
+        String path = slash >= 0 ? caliberId.substring(slash + 1) : caliberId;
+        if (calibers.containsKey(path)) {
+            return calibers.get(path);
+        }
+        // Try underscore -> hyphen (tacz:30_06 matches 30-06.json)
+        String pathWithHyphen = path.replace('_', '-');
+        if (calibers.containsKey(pathWithHyphen)) {
+            return calibers.get(pathWithHyphen);
+        }
+        // Try namespace:pathWithHyphen
+        int colon = caliberId.indexOf(':');
+        String nsPath = colon >= 0 ? caliberId.substring(0, colon + 1) + pathWithHyphen : pathWithHyphen;
+        if (calibers.containsKey(nsPath)) {
+            return calibers.get(nsPath);
+        }
+        return defaultConfig;
     }
     
     /**

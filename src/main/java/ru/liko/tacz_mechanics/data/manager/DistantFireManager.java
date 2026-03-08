@@ -45,7 +45,7 @@ public class DistantFireManager extends SimpleJsonResourceReloadListener {
     private final Queue<DelayedSound> delayedSounds = new ConcurrentLinkedQueue<>();
     
     private DistantFireManager() {
-        super(GSON, "distant_fire");
+        super(GSON, "distant_fire_layers");
     }
     
     @Override

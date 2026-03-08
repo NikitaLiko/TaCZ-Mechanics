@@ -1,12 +1,12 @@
-﻿{
-  "close_distance": 40,
-  "mid_distance": 100,
-  "far_distance": 250,
-  "very_far_distance": 450,
+{
+  "caliber_id": "tacz:revolver",
   "close_sound": "taczmechanics:distant/revolver/close",
   "mid_sound": "taczmechanics:distant/revolver/mid",
   "far_sound": "taczmechanics:distant/revolver/far",
   "very_far_sound": "taczmechanics:distant/revolver/veryfar",
+  "close_max_distance": 40,
+  "mid_max_distance": 100,
+  "far_max_distance": 250,
   "close_volume": 1.0,
   "mid_volume": 1.1,
   "far_volume": 1.2,

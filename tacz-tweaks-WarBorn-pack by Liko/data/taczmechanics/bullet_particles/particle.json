@@ -13,23 +13,6 @@
       }
     },
     {
-      "particle": "minecraft:white_ash",
-      "count": 20,
-      "speed": 0.15,
-      "position": {
-        "type": "relative",
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "delta": {
-        "type": "absolute",
-        "x": 0.4,
-        "y": 0.2,
-        "z": 0.4
-      }
-    },
-    {
       "particle": "minecraft:campfire_cosy_smoke",
       "count": 2,
       "speed": 0.01,
