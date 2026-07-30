@@ -1,0 +1,9 @@
+{
+  "textures": [
+    "snassets:ground_effects/glass0",
+    "snassets:ground_effects/glass1",
+    "snassets:ground_effects/glass2",
+    "snassets:ground_effects/glasscluster0",
+    "snassets:ground_effects/glasscluster1"
+  ]
+}

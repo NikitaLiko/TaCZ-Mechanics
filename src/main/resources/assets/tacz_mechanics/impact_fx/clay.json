@@ -1,0 +1,77 @@
+{
+  "priority": 22,
+  "blocks": [
+    "minecraft:clay",
+    "#minecraft:terracotta",
+    "#c:concretes"
+  ],
+  "layers": [
+    {
+      "sprites": "debris",
+      "count": 6,
+      "life": 50,
+      "size": {
+        "from": 0.13,
+        "to": 0.11
+      },
+      "alpha": 1.0,
+      "fadeOut": 12,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.31,
+        "spreadNormal": 0.19,
+        "spreadTangent": 0.14
+      },
+      "gravity": -0.048,
+      "drag": 0.97,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "smoke",
+      "count": 2,
+      "life": 15,
+      "size": {
+        "from": 0.12,
+        "to": 0.72
+      },
+      "alpha": 0.72,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "C2A78F",
+        "B39A82",
+        "D2BCA6"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 170,
+      "size": {
+        "from": 0.34,
+        "to": 0.72
+      },
+      "alpha": 0.28,
+      "fadeOut": 85,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.2,
+        "spreadNormal": 0.15,
+        "spreadTangent": 0.12
+      },
+      "drag": 0.86,
+      "moveTicks": 6,
+      "colors": [
+        "C2A78F",
+        "B39A82",
+        "D2BCA6"
+      ]
+    }
+  ]
+}

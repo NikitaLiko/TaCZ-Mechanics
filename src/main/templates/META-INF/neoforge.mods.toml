@@ -79,6 +79,15 @@ versionRange = "[3.3.0,)"
 ordering = "AFTER"
 side = "CLIENT"
 
+# Supplies every particle texture used by assets/tacz_mechanics/impact_fx/*.json.
+# Client-only: a dedicated server never stitches the particle atlas.
+[[dependencies."${mod_id}"]]
+modId = "snassets"
+type = "required"
+versionRange = "[1.0.0,)"
+ordering = "NONE"
+side = "CLIENT"
+
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't
 # stop your mod loading on the server for example.

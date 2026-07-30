@@ -16,6 +16,7 @@ import ru.liko.tacz_mechanics.TaczMechanics;
 import ru.liko.tacz_mechanics.data.manager.BulletParticlesManager;
 import ru.liko.tacz_mechanics.data.manager.BulletSoundsManager;
 import ru.liko.tacz_mechanics.network.SuppressionPacket;
+import ru.liko.tacz_mechanics.particle.ImpactFxSender;
 
 /**
  * Event handler for TACZ gun events integration.
@@ -57,6 +58,8 @@ public class TaczEventHandler {
             event.getState()
         );
 
+        ImpactFxSender.send(serverLevel, event.getHitResult().getLocation(),
+            event.getHitResult().getDirection(), event.getState(), ImpactFxSender.HIT);
         sendImpactSuppression(serverLevel, event.getHitResult().getLocation(), bullet.getOwner());
     }
 

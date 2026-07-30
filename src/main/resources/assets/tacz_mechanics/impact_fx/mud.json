@@ -1,0 +1,75 @@
+{
+  "priority": 22,
+  "blocks": [
+    "minecraft:mud",
+    "minecraft:packed_mud",
+    "minecraft:muddy_mangrove_roots",
+    "minecraft:mud_bricks",
+    "minecraft:mud_brick_slab",
+    "minecraft:mud_brick_stairs",
+    "minecraft:mud_brick_wall"
+  ],
+  "layers": [
+    {
+      "sprites": "dirt",
+      "count": 7,
+      "life": 56,
+      "size": {
+        "from": 0.2,
+        "to": 0.17
+      },
+      "alpha": 1.0,
+      "fadeOut": 14,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.3,
+        "spreadNormal": 0.16,
+        "spreadTangent": 0.1
+      },
+      "gravity": -0.055,
+      "drag": 0.97,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "smoke",
+      "count": 1,
+      "life": 12,
+      "size": {
+        "from": 0.1,
+        "to": 0.45
+      },
+      "alpha": 0.5,
+      "fadeOut": 6,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "7A6A55",
+        "6B5C49",
+        "8A7A64"
+      ]
+    },
+    {
+      "sprites": "watermist",
+      "count": 2,
+      "life": 15,
+      "size": {
+        "from": 0.1,
+        "to": 0.42
+      },
+      "alpha": 0.5,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.1,
+        "spreadNormal": 0.07,
+        "spreadTangent": 0.08
+      },
+      "drag": 0.88
+    }
+  ]
+}

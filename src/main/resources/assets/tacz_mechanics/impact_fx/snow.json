@@ -1,0 +1,77 @@
+{
+  "priority": 22,
+  "blocks": [
+    "minecraft:snow_block",
+    "minecraft:powder_snow",
+    "#minecraft:snow"
+  ],
+  "layers": [
+    {
+      "sprites": "snow",
+      "count": 8,
+      "life": 50,
+      "size": {
+        "from": 0.15,
+        "to": 0.12
+      },
+      "alpha": 1.0,
+      "fadeOut": 12,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.3,
+        "spreadNormal": 0.19,
+        "spreadTangent": 0.15
+      },
+      "gravity": -0.028,
+      "drag": 0.95,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "snowdust",
+      "count": 3,
+      "life": 15,
+      "size": {
+        "from": 0.15,
+        "to": 0.95
+      },
+      "alpha": 0.85,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "E8F5F7",
+        "EBFCFF",
+        "DCEBEF"
+      ]
+    },
+    {
+      "sprites": "snowdust",
+      "count": 5,
+      "life": 220,
+      "size": {
+        "from": 0.4,
+        "to": 0.95
+      },
+      "alpha": 0.38,
+      "fadeOut": 110,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.2,
+        "spreadNormal": 0.15,
+        "spreadTangent": 0.12
+      },
+      "drag": 0.86,
+      "moveTicks": 6,
+      "colors": [
+        "E8F5F7",
+        "EBFCFF",
+        "DCEBEF"
+      ]
+    }
+  ]
+}

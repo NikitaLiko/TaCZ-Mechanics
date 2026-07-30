@@ -2,17 +2,25 @@
   "required": true,
   "minVersion": "0.8",
   "package": "ru.liko.tacz_mechanics.mixin",
+  "plugin": "ru.liko.tacz_mechanics.mixin.TaczMechanicsMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "WhizzEntityKineticBulletMixin",
     "BulletBlockImpactMixin",
+    "BulletFluidEntryMixin",
     "BulletHoleForceSpawnMixin",
     "EntityKineticBulletStartPosAccessorMixin",
     "FreeAimShootMixin",
     "movement.PlayerEyePositionMixin",
-    "movement.BulletLeanOffsetMixin"
+    "movement.BulletLeanOffsetMixin",
+    "movement.PostureDimensionsMixin",
+    "hitbox.EntityUtilHitboxMixin",
+    "hitbox.TacHitResultBoneMixin",
+    "hitbox.SbwProjectileHitboxMixin"
   ],
     "client": [
+    "GunLightEngineMixin",
+    "MoonriseGunLightMixin",
     "SoundEngineMixin",
     "SoundPlayManagerMixin",
     "TweaksSoundPlayManagerMixin",
@@ -25,7 +33,13 @@
     "SuppressionGameRendererMixin",
     "SuppressionCameraShakeMixin",
     "movement.HumanoidModelMixin",
-    "movement.CameraOffsetMixin"
+    "movement.LeanBodyRollMixin",
+    "movement.CameraOffsetMixin",
+    "movement.LeanHandRollMixin",
+    "movement.PostureAnimMixin",
+    "movement.PostureBodyMixin",
+    "movement.ProneLookClampMixin",
+    "movement.StepSoundMuffleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

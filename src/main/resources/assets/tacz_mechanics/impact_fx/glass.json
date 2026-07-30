@@ -1,0 +1,48 @@
+{
+  "priority": 24,
+  "blocks": [
+    "#minecraft:glass_blocks",
+    "#c:glass_blocks",
+    "#c:glass_panes"
+  ],
+  "layers": [
+    {
+      "sprites": "glass",
+      "count": 9,
+      "life": 67,
+      "size": {
+        "from": 0.12,
+        "to": 0.1
+      },
+      "alpha": 1.0,
+      "fadeOut": 16,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.32,
+        "spreadNormal": 0.21,
+        "spreadTangent": 0.19
+      },
+      "gravity": -0.048,
+      "drag": 0.97,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "watermist",
+      "count": 3,
+      "life": 10,
+      "size": {
+        "from": 0.13,
+        "to": 0.6
+      },
+      "alpha": 0.45,
+      "fadeOut": 6,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.12,
+        "spreadNormal": 0.09,
+        "spreadTangent": 0.1
+      },
+      "drag": 0.87
+    }
+  ]
+}

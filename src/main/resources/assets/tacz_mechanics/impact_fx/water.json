@@ -1,0 +1,46 @@
+{
+  "priority": 40,
+  "blocks": [
+    "minecraft:water",
+    "minecraft:bubble_column"
+  ],
+  "layers": [
+    {
+      "sprites": "splash",
+      "count": 7,
+      "life": 25,
+      "size": {
+        "from": 0.42,
+        "to": 0.004
+      },
+      "alpha": 1.0,
+      "offset": 0.2,
+      "motion": {
+        "velocity": 0.26,
+        "spreadNormal": 0.2,
+        "spreadTangent": 0.05
+      },
+      "gravity": -0.03,
+      "drag": 1.0
+    },
+    {
+      "sprites": "watermist",
+      "count": 5,
+      "life": 20,
+      "size": {
+        "from": 0.18,
+        "to": 0.44
+      },
+      "alpha": 0.8,
+      "fadeOut": 15,
+      "offset": 0.04,
+      "motion": {
+        "velocity": 0.26,
+        "spreadNormal": 0.24,
+        "spreadTangent": 0.02
+      },
+      "gravity": -0.012,
+      "drag": 1.0
+    }
+  ]
+}

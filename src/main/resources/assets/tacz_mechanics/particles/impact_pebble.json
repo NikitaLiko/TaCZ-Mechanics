@@ -1,0 +1,10 @@
+{
+  "textures": [
+    "snassets:ground_effects/pebble0",
+    "snassets:ground_effects/pebble1",
+    "snassets:ground_effects/pebble2",
+    "snassets:ground_effects/gravel0",
+    "snassets:ground_effects/gravel1",
+    "snassets:ground_effects/gravel2"
+  ]
+}

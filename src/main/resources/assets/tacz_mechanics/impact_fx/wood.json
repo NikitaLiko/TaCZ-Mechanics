@@ -1,0 +1,145 @@
+{
+  "priority": 20,
+  "blocks": [
+    "minecraft:oak_log",
+    "minecraft:oak_wood",
+    "minecraft:stripped_oak_log",
+    "minecraft:stripped_oak_wood",
+    "minecraft:oak_planks",
+    "minecraft:spruce_log",
+    "minecraft:spruce_wood",
+    "minecraft:stripped_spruce_log",
+    "minecraft:stripped_spruce_wood",
+    "minecraft:spruce_planks",
+    "minecraft:birch_log",
+    "minecraft:birch_wood",
+    "minecraft:stripped_birch_log",
+    "minecraft:stripped_birch_wood",
+    "minecraft:birch_planks",
+    "minecraft:jungle_log",
+    "minecraft:jungle_wood",
+    "minecraft:stripped_jungle_log",
+    "minecraft:stripped_jungle_wood",
+    "minecraft:jungle_planks",
+    "minecraft:acacia_log",
+    "minecraft:acacia_wood",
+    "minecraft:stripped_acacia_log",
+    "minecraft:stripped_acacia_wood",
+    "minecraft:acacia_planks",
+    "minecraft:dark_oak_log",
+    "minecraft:dark_oak_wood",
+    "minecraft:stripped_dark_oak_log",
+    "minecraft:stripped_dark_oak_wood",
+    "minecraft:dark_oak_planks",
+    "minecraft:mangrove_log",
+    "minecraft:mangrove_wood",
+    "minecraft:stripped_mangrove_log",
+    "minecraft:stripped_mangrove_wood",
+    "minecraft:mangrove_planks",
+    "minecraft:cherry_log",
+    "minecraft:cherry_wood",
+    "minecraft:stripped_cherry_log",
+    "minecraft:stripped_cherry_wood",
+    "minecraft:cherry_planks",
+    "minecraft:crimson_stem",
+    "minecraft:crimson_hyphae",
+    "minecraft:stripped_crimson_stem",
+    "minecraft:stripped_crimson_hyphae",
+    "minecraft:crimson_planks",
+    "minecraft:warped_stem",
+    "minecraft:warped_hyphae",
+    "minecraft:stripped_warped_stem",
+    "minecraft:stripped_warped_hyphae",
+    "minecraft:warped_planks"
+  ],
+  "layers": [
+    {
+      "sprites": "splinter",
+      "count": 9,
+      "life": 110,
+      "size": {
+        "from": 0.15,
+        "to": 0.13
+      },
+      "alpha": 1.0,
+      "fadeOut": 27,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.28,
+        "spreadNormal": 0.24,
+        "spreadTangent": 0.16
+      },
+      "gravity": -0.045,
+      "drag": 0.97,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "splinter",
+      "count": 6,
+      "life": 42,
+      "size": {
+        "from": 0.07,
+        "to": 0.055
+      },
+      "alpha": 1.0,
+      "fadeOut": 10,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.26,
+        "spreadNormal": 0.2,
+        "spreadTangent": 0.2
+      },
+      "gravity": -0.04,
+      "drag": 0.96
+    },
+    {
+      "sprites": "smoke",
+      "count": 2,
+      "life": 15,
+      "size": {
+        "from": 0.1,
+        "to": 0.6
+      },
+      "alpha": 0.68,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "C9B79A",
+        "B39C7B",
+        "A8916F",
+        "D8C9AE"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 130,
+      "size": {
+        "from": 0.28,
+        "to": 0.6
+      },
+      "alpha": 0.26,
+      "fadeOut": 65,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.17,
+        "spreadNormal": 0.15,
+        "spreadTangent": 0.12
+      },
+      "drag": 0.86,
+      "moveTicks": 6,
+      "colors": [
+        "C9B79A",
+        "B39C7B",
+        "A8916F",
+        "D8C9AE"
+      ]
+    }
+  ]
+}

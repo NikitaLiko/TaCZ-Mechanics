@@ -5,6 +5,7 @@ import com.tacz.guns.entity.EntityKineticBullet;
 import com.tacz.guns.particles.BulletHoleOption;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -29,7 +30,9 @@ import ru.liko.tacz_mechanics.data.manager.BulletInteractionsManager;
 import ru.liko.tacz_mechanics.data.manager.BulletParticlesManager;
 import ru.liko.tacz_mechanics.data.manager.BulletSoundsManager;
 import ru.liko.tacz_mechanics.mixininterface.EntityKineticBulletImpactState;
+import ru.liko.tacz_mechanics.particle.ImpactFxSender;
 import ru.liko.tacz_mechanics.mixininterface.EntityKineticBulletStartPosAccessor;
+import ru.liko.tacz_mechanics.util.PierceGeometry;
 
 /**
  * Unified handler for {@code EntityKineticBullet#onHitBlock}. It performs the
@@ -48,6 +51,13 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
 
     @Unique
     private static final double TACZ_MECHANICS$EXIT_EPSILON = 0.005;
+
+    /**
+     * Части регдоллов Sable Player Ragdoll — и игроков, и мобов. Сверяем пространство имён,
+     * а не конкретный блок: тело есть тело, какой бы части оно ни принадлежало.
+     */
+    @Unique
+    private static final String TACZ_MECHANICS$RAGDOLL_NAMESPACE = "sable_player_ragdoll";
 
     @Unique
     private int taczMechanics$ricochetCount = 0;
@@ -106,6 +116,17 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
         Level level = bullet.level();
 
         BlockState state = level.getBlockState(result.getBlockPos());
+
+        // Тело — не архитектура. Пробитие и рикошет здесь считать нельзя: коробка конечности
+        // тоньше thinBlockMaxThickness, поэтому fallback принимает её за стекло, пробивает и
+        // делает ci.cancel(). Отмена гасит весь onHitBlock вместе с AmmoHitBlockEvent, а по
+        // этому событию моды ведут урон и импульс по регдоллу (Trauma) — попадание для них
+        // просто исчезает. Пропускаем такие блоки к штатному обработчику TACZ.
+        if (TACZ_MECHANICS$RAGDOLL_NAMESPACE.equals(
+                BuiltInRegistries.BLOCK.getKey(state.getBlock()).getNamespace())) {
+            return;
+        }
+
         Vec3 hitVec = result.getLocation();
         float damage = bullet.getDamage(hitVec);
 
@@ -149,11 +170,22 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
             return false;
         }
 
+        BlockPos blockPos = result.getBlockPos();
+        Vec3 dirNorm = velocity.normalize();
+        java.util.List<AABB> boxes = taczMechanics$collisionBoxes(level, blockPos, state);
+
         double distanceFromStart = taczMechanics$distanceFromStart(bullet, hitVec);
         // Deterministic roll so client and server agree on whether the bullet pierces.
-        RandomSource random = taczMechanics$deterministicRandom(bullet, result.getBlockPos(), taczMechanics$pierceCount);
+        RandomSource random = taczMechanics$deterministicRandom(bullet, blockPos, taczMechanics$pierceCount);
         BulletInteractions.PierceSettings pierce = BulletInteractionsManager.INSTANCE.findBlockPierce(
             level, this.gunId, this.ammoId, damage, result, state, distanceFromStart, random);
+        // Nothing configured for this block: fall back to "thin enough to shoot through",
+        // measured on the collision shape the bullet actually crosses. A block someone did
+        // configure keeps its own verdict (including a failed chance roll).
+        if (pierce == null
+                && !BulletInteractionsManager.INSTANCE.hasBlockRuleFor(level, this.gunId, this.ammoId, damage, result, state)) {
+            pierce = taczMechanics$thinBlockPierce(boxes, state, hitVec, dirNorm);
+        }
         if (pierce == null) {
             taczMechanics$debugPierce("skip: no pierce config matched block=%s", state.getBlock());
             return false;
@@ -165,9 +197,7 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
             return false;
         }
 
-        BlockPos blockPos = result.getBlockPos();
-        Vec3 dirNorm = velocity.normalize();
-        Vec3 exitPoint = taczMechanics$computeExitPoint(level, blockPos, state, hitVec, dirNorm);
+        Vec3 exitPoint = taczMechanics$computeExitPoint(boxes, blockPos, hitVec, dirNorm);
         Vec3 finalPos = exitPoint.add(dirNorm.scale(TACZ_MECHANICS$EXIT_EPSILON));
 
         // Server-only world effects (holes/particles/sounds).
@@ -179,6 +209,8 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
                 BulletParticlesManager.INSTANCE.handleBlockParticle(
                     BulletParticlesManager.BlockParticleType.PIERCE,
                     serverLevel, this.gunId, this.ammoId, damage, result, state);
+                ImpactFxSender.send(serverLevel, hitVec, result.getDirection(), state,
+                    ImpactFxSender.PIERCE_ENTRY);
             }
             if (pierce.spawnSounds()) {
                 BulletSoundsManager.INSTANCE.handleBlockSound(
@@ -203,6 +235,10 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
         if (pierce.spawnExitHole() && level instanceof ServerLevel serverExitLevel) {
             Direction exitFace = taczMechanics$pickExitFace(blockPos, exitPoint);
             taczMechanics$spawnBulletHole(serverExitLevel, blockPos, exitPoint, exitFace);
+            // Spall on the far side: weaker than the entry, and thrown out of the exit face.
+            if (pierce.spawnParticles()) {
+                ImpactFxSender.send(serverExitLevel, exitPoint, exitFace, state, ImpactFxSender.PIERCE_EXIT);
+            }
         }
 
         taczMechanics$pierceCount++;
@@ -314,6 +350,7 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
                 serverLevel, this.gunId, this.ammoId, damage, result, state);
             BulletParticlesManager.INSTANCE.handleBlockParticle(BulletParticlesManager.BlockParticleType.RICOCHET,
                 serverLevel, this.gunId, this.ammoId, damage, result, state);
+            ImpactFxSender.send(serverLevel, hitVec, face, state, ImpactFxSender.RICOCHET);
         }
 
         taczMechanics$debugRicochet("ricochet#%d speed=%.3f->%.3f angle=%.2f chanceRoll=%.3f",
@@ -354,73 +391,61 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
     }
 
     /**
-     * Finds the point at which the bullet's trajectory exits the given block,
-     * using the block's actual collision shape (or its bounding box if empty).
-     * Falls back to the entry point if the trajectory does not intersect.
+     * Collision boxes of the block in world space. An empty collision shape is treated
+     * as a full cube, matching how the bullet trace itself resolved the hit.
      */
     @Unique
-    private static Vec3 taczMechanics$computeExitPoint(Level level, BlockPos blockPos, BlockState state, Vec3 entry, Vec3 dir) {
-        if (dir.lengthSqr() < 1.0e-9) return entry;
-
+    private static java.util.List<AABB> taczMechanics$collisionBoxes(Level level, BlockPos blockPos, BlockState state) {
+        double ox = blockPos.getX();
+        double oy = blockPos.getY();
+        double oz = blockPos.getZ();
         VoxelShape shape;
         try {
             shape = state.getCollisionShape(level, blockPos);
         } catch (Exception e) {
             shape = null;
         }
-
-        double bestT = -1.0;
-        double ox = blockPos.getX();
-        double oy = blockPos.getY();
-        double oz = blockPos.getZ();
         if (shape == null || shape.isEmpty()) {
-            AABB aabb = new AABB(ox, oy, oz, ox + 1, oy + 1, oz + 1);
-            bestT = taczMechanics$rayAabbExitT(entry, dir, aabb);
-        } else {
-            for (AABB part : shape.toAabbs()) {
-                AABB world = part.move(ox, oy, oz);
-                double t = taczMechanics$rayAabbExitT(entry, dir, world);
-                if (t > bestT) bestT = t;
-            }
+            return java.util.List.of(new AABB(ox, oy, oz, ox + 1, oy + 1, oz + 1));
         }
-
-        if (!Double.isFinite(bestT) || bestT <= 0.0) {
-            // Trajectory did not exit (e.g. tangential hit on a partial shape).
-            // Fall back to opposite-face center to keep behaviour graceful.
-            return Vec3.atCenterOf(blockPos);
-        }
-        return entry.add(dir.scale(bestT));
+        return shape.toAabbs().stream().map(part -> part.move(ox, oy, oz)).toList();
     }
 
     /**
-     * Slab-based ray/AABB intersection. Returns the parametric distance along
-     * {@code dir} where the ray exits the box, or {@code -1} when the ray
-     * misses entirely. {@code dir} need not be normalised.
+     * Default pierce for blocks nobody configured, gated purely on how much material the
+     * bullet has to cross: fences, gates, bars, panes, doors, trapdoors, plates and
+     * anything thinner pass; slabs, stairs and full blocks do not.
      */
     @Unique
-    private static double taczMechanics$rayAabbExitT(Vec3 origin, Vec3 dir, AABB aabb) {
-        double tMin = Double.NEGATIVE_INFINITY;
-        double tMax = Double.POSITIVE_INFINITY;
-        for (int axis = 0; axis < 3; axis++) {
-            double o, d, mn, mx;
-            switch (axis) {
-                case 0 -> { o = origin.x; d = dir.x; mn = aabb.minX; mx = aabb.maxX; }
-                case 1 -> { o = origin.y; d = dir.y; mn = aabb.minY; mx = aabb.maxY; }
-                default -> { o = origin.z; d = dir.z; mn = aabb.minZ; mx = aabb.maxZ; }
-            }
-            if (Math.abs(d) < 1.0e-9) {
-                if (o < mn - 1.0e-6 || o > mx + 1.0e-6) return -1.0;
-                continue;
-            }
-            double t1 = (mn - o) / d;
-            double t2 = (mx - o) / d;
-            if (t1 > t2) { double tmp = t1; t1 = t2; t2 = tmp; }
-            if (t1 > tMin) tMin = t1;
-            if (t2 < tMax) tMax = t2;
-            if (tMax < tMin) return -1.0;
+    private BulletInteractions.PierceSettings taczMechanics$thinBlockPierce(java.util.List<AABB> boxes, BlockState state,
+                                                                           Vec3 entry, Vec3 dirNorm) {
+        double max = Config.Pierce.thinBlockMaxThickness;
+        if (max <= 0.0) return null;
+        double thickness = PierceGeometry.materialThickness(boxes, entry, dirNorm);
+        if (thickness > max) {
+            taczMechanics$debugPierce("skip: thin fallback thickness=%.3f above max=%.3f block=%s",
+                thickness, max, state.getBlock());
+            return null;
         }
-        if (tMax <= 0.0) return -1.0;
-        return tMax;
+        taczMechanics$debugPierce("thin fallback: block=%s thickness=%.3f <= %.3f", state.getBlock(), thickness, max);
+        return new BulletInteractions.PierceSettings(1.0f, 0.0f, -1.0f, -1.0f,
+            (float) Config.Pierce.thinBlockDamageMultiplier, (float) Config.Pierce.thinBlockSpeedMultiplier,
+            true, true, true, true);
+    }
+
+    /**
+     * Finds the point at which the bullet's trajectory exits the given block.
+     * Falls back to the block centre if the trajectory does not intersect
+     * (e.g. tangential hit on a partial shape).
+     */
+    @Unique
+    private static Vec3 taczMechanics$computeExitPoint(java.util.List<AABB> boxes, BlockPos blockPos, Vec3 entry, Vec3 dir) {
+        if (dir.lengthSqr() < 1.0e-9) return entry;
+        double bestT = PierceGeometry.exitT(boxes, entry, dir);
+        if (!Double.isFinite(bestT) || bestT <= 0.0) {
+            return Vec3.atCenterOf(blockPos);
+        }
+        return entry.add(dir.scale(bestT));
     }
 
     /** Selects the block face whose plane is closest to the given exit point. */

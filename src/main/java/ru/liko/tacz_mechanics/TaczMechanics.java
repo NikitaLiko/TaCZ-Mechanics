@@ -12,6 +12,7 @@ import ru.liko.tacz_mechanics.data.manager.BulletInteractionsManager;
 import ru.liko.tacz_mechanics.data.manager.BulletParticlesManager;
 import ru.liko.tacz_mechanics.data.manager.BulletSoundsManager;
 import ru.liko.tacz_mechanics.data.whizz.WhizzSoundManager;
+import ru.liko.tacz_mechanics.particle.ModParticles;
 
 @Mod(TaczMechanics.MODID)
 public class TaczMechanics {
@@ -21,6 +22,7 @@ public class TaczMechanics {
     public TaczMechanics(IEventBus modEventBus, ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
 
+        ModParticles.TYPES.register(modEventBus);
         modEventBus.addListener(TaczMechanics::onCommonSetup);
 
         LOGGER.info("TaCZ Mechanics initialized");

@@ -1,0 +1,28 @@
+{
+  "priority": 24,
+  "blocks": [
+    "#minecraft:leaves"
+  ],
+  "layers": [
+    {
+      "sprites": "leaves",
+      "count": 8,
+      "life": 110,
+      "size": {
+        "from": 0.16,
+        "to": 0.14
+      },
+      "alpha": 1.0,
+      "fadeOut": 27,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.2,
+        "spreadNormal": 0.16,
+        "spreadTangent": 0.18
+      },
+      "gravity": -0.012,
+      "drag": 0.93,
+      "stopOnGround": true
+    }
+  ]
+}

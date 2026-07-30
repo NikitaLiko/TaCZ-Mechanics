@@ -1,0 +1,9 @@
+{
+  "textures": [
+    "snassets:smoke/smokecluster0_translucent",
+    "snassets:smoke/smokecluster1_translucent",
+    "snassets:smoke/smokecluster2_translucent",
+    "snassets:smoke/smokecluster3_translucent",
+    "snassets:smoke/smokecluster4_translucent"
+  ]
+}

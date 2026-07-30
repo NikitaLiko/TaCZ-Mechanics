@@ -1,0 +1,10 @@
+{
+  "textures": [
+    "snassets:ground_effects/sand0",
+    "snassets:ground_effects/sand1",
+    "snassets:ground_effects/sand2",
+    "snassets:ground_effects/sandsmall0",
+    "snassets:ground_effects/sandsmall1",
+    "snassets:ground_effects/sandsmall2"
+  ]
+}

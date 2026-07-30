@@ -1,0 +1,81 @@
+{
+  "priority": 24,
+  "blocks": [
+    "#minecraft:ice"
+  ],
+  "layers": [
+    {
+      "sprites": "snow",
+      "count": 6,
+      "life": 45,
+      "size": {
+        "from": 0.13,
+        "to": 0.1
+      },
+      "alpha": 1.0,
+      "fadeOut": 11,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.32,
+        "spreadNormal": 0.2,
+        "spreadTangent": 0.16
+      },
+      "gravity": -0.045,
+      "drag": 0.96,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "glass",
+      "count": 4,
+      "life": 38,
+      "size": {
+        "from": 0.09,
+        "to": 0.075
+      },
+      "alpha": 1.0,
+      "fadeOut": 9,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.3,
+        "spreadNormal": 0.2,
+        "spreadTangent": 0.18
+      },
+      "gravity": -0.045,
+      "drag": 0.96
+    },
+    {
+      "sprites": "flash",
+      "count": 1,
+      "life": 3,
+      "size": {
+        "from": 0.32,
+        "to": 0.62
+      },
+      "alpha": 0.9,
+      "fadeOut": 3,
+      "offset": 0.06,
+      "bright": true,
+      "motion": {
+        "velocity": 0.01
+      }
+    },
+    {
+      "sprites": "watermist",
+      "count": 3,
+      "life": 14,
+      "size": {
+        "from": 0.12,
+        "to": 0.55
+      },
+      "alpha": 0.55,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.11,
+        "spreadNormal": 0.08,
+        "spreadTangent": 0.09
+      },
+      "drag": 0.88
+    }
+  ]
+}

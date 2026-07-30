@@ -1,0 +1,14 @@
+{
+  "textures": [
+    "snassets:ground_effects/snow0_translucent",
+    "snassets:ground_effects/snow1_translucent",
+    "snassets:ground_effects/snow2_translucent",
+    "snassets:ground_effects/snow3_translucent",
+    "snassets:ground_effects/snow4_translucent",
+    "snassets:ground_effects/snowno0",
+    "snassets:ground_effects/snowno1",
+    "snassets:ground_effects/snowno2",
+    "snassets:ground_effects/snowno3",
+    "snassets:ground_effects/snowno4"
+  ]
+}

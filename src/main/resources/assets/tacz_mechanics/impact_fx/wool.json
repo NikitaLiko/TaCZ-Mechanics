@@ -1,0 +1,31 @@
+{
+  "priority": 24,
+  "blocks": [
+    "#minecraft:wool",
+    "#minecraft:wool_carpets"
+  ],
+  "layers": [
+    {
+      "sprites": "smokecluster",
+      "count": 2,
+      "life": 14,
+      "size": {
+        "from": 0.09,
+        "to": 0.42
+      },
+      "alpha": 0.55,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "E8E4DE",
+        "D5D0C8"
+      ]
+    }
+  ]
+}

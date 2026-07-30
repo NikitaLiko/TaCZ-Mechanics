@@ -1,0 +1,105 @@
+{
+  "priority": 22,
+  "blocks": [
+    "minecraft:gravel",
+    "#c:gravels"
+  ],
+  "layers": [
+    {
+      "sprites": "pebble",
+      "count": 7,
+      "life": 62,
+      "size": {
+        "from": 0.14,
+        "to": 0.12
+      },
+      "alpha": 1.0,
+      "fadeOut": 15,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.31,
+        "spreadNormal": 0.19,
+        "spreadTangent": 0.15
+      },
+      "gravity": -0.05,
+      "drag": 0.97,
+      "stopOnGround": true
+    },
+    {
+      "sprites": "dirt",
+      "count": 5,
+      "life": 23,
+      "size": {
+        "from": 0.08,
+        "to": 0.065
+      },
+      "alpha": 1.0,
+      "fadeOut": 6,
+      "offset": 0.05,
+      "motion": {
+        "velocity": 0.28,
+        "spreadNormal": 0.17,
+        "spreadTangent": 0.18
+      },
+      "gravity": -0.04,
+      "drag": 0.96
+    },
+    {
+      "sprites": "smoke",
+      "count": 2,
+      "life": 15,
+      "size": {
+        "from": 0.12,
+        "to": 0.7
+      },
+      "alpha": 0.7,
+      "fadeOut": 7,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.07
+      },
+      "drag": 0.88,
+      "colors": [
+        "C4C0BB",
+        "BAB0A7",
+        "B9B4AD",
+        "D2D0CD",
+        "ADA79F",
+        "A39A8D",
+        "99958F",
+        "DDDBD8"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 160,
+      "size": {
+        "from": 0.32,
+        "to": 0.7
+      },
+      "alpha": 0.28,
+      "fadeOut": 80,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.2,
+        "spreadNormal": 0.15,
+        "spreadTangent": 0.12
+      },
+      "drag": 0.86,
+      "moveTicks": 6,
+      "colors": [
+        "C4C0BB",
+        "BAB0A7",
+        "B9B4AD",
+        "D2D0CD",
+        "ADA79F",
+        "A39A8D",
+        "99958F",
+        "DDDBD8"
+      ]
+    }
+  ]
+}

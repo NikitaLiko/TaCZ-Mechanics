@@ -1,0 +1,98 @@
+{
+  "priority": 40,
+  "blocks": [
+    "minecraft:lava"
+  ],
+  "layers": [
+    {
+      "sprites": "flash",
+      "count": 1,
+      "life": 4,
+      "size": {
+        "from": 0.34,
+        "to": 0.7
+      },
+      "alpha": 0.9,
+      "fadeOut": 4,
+      "offset": 0.05,
+      "bright": true,
+      "motion": {
+        "velocity": 0.01
+      },
+      "colors": [
+        "FFB25A"
+      ]
+    },
+    {
+      "sprites": "splash",
+      "count": 6,
+      "life": 28,
+      "size": {
+        "from": 0.22,
+        "to": 0.17
+      },
+      "alpha": 1.0,
+      "fadeOut": 10,
+      "offset": 0.03,
+      "bright": true,
+      "colors": [
+        "FF9A3C",
+        "FF6A00",
+        "FFC46B",
+        "E85018"
+      ],
+      "motion": {
+        "velocity": 0.24,
+        "spreadNormal": 0.16,
+        "spreadTangent": 0.12
+      },
+      "gravity": -0.05,
+      "drag": 0.97
+    },
+    {
+      "sprites": "fire",
+      "count": 3,
+      "life": 12,
+      "size": {
+        "from": 0.16,
+        "to": 0.34
+      },
+      "alpha": 0.9,
+      "fadeOut": 6,
+      "offset": 0.08,
+      "bright": true,
+      "animated": true,
+      "motion": {
+        "velocity": 0.09,
+        "spreadNormal": 0.06,
+        "spreadTangent": 0.08
+      },
+      "drag": 0.9
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 160,
+      "size": {
+        "from": 0.24,
+        "to": 0.75
+      },
+      "alpha": 0.45,
+      "fadeOut": 80,
+      "offset": 0.1,
+      "colors": [
+        "2B2724",
+        "3A3531",
+        "1F1C1A"
+      ],
+      "motion": {
+        "velocity": 0.14,
+        "spreadNormal": 0.1,
+        "spreadTangent": 0.1
+      },
+      "gravity": 0.002,
+      "drag": 0.9,
+      "moveTicks": 20
+    }
+  ]
+}
