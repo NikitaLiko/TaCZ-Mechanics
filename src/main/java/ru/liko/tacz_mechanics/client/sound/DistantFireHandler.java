@@ -6,9 +6,11 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
+import ru.liko.pjmapi.api.client.SoundFilters;
 import ru.liko.tacz_mechanics.Config;
 import ru.liko.tacz_mechanics.client.ClientDistantFireSettings;
 
@@ -39,7 +41,9 @@ public final class DistantFireHandler {
         double near = ClientDistantFireSettings.nearSoundRange();
         double far = Math.max(ClientDistantFireSettings.muffleFarDistance(), near + 1.0);
 
-        float muffleAmount = SoundFilterUtil.calculateMuffleFromDistance(distanceToPlayer, near, far);
+        // Линейная рампа приглушения от near до far. Раньше жила в SoundFilterUtil,
+        // который вместе с остальным низкочастотным трактом уехал в PJM-API.
+        final float muffleAmount = (float) Mth.clamp((distanceToPlayer - near) / (far - near), 0.0, 1.0);
         if (muffleAmount <= 0.01f) {
             return null;
         }
@@ -55,7 +59,7 @@ public final class DistantFireHandler {
             mono
         );
 
-        SoundFilterRegistry.register(soundInstance, muffleAmount);
+        SoundFilters.attach(soundInstance, SoundFilters.muffle(() -> muffleAmount));
         Minecraft.getInstance().getSoundManager().play(soundInstance);
 
         if (Config.debug) {

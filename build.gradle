@@ -111,6 +111,12 @@ dependencies {
         transitive = false
     }
 
+    // OpenAL low-pass filtering (tinnitus, distant fire muffle) lives in PJM-API.
+    compileOnly 'ru.liko.pjmapi:pjmapi'
+    runtimeOnly('ru.liko.pjmapi:pjmapi') {
+        transitive = false
+    }
+
     // SuperbWarfare compat is optional at runtime, so the built jar is enough to compile against.
     compileOnly fileTree(dir: '../_built', include: 'superbwarfare-*.jar')
 

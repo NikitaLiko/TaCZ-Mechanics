@@ -24,3 +24,13 @@ includeBuild('../PJM-Ragdooll') {
         substitute module('ru.liko.pjmragdoll:pjmragdoll') using project(':')
     }
 }
+
+// PJM-API owns OpenAL low-pass filtering: resolving the source, applying the filter on
+// the sound thread and combining several muffle contributions into the one slot a source
+// has. Our own copy leaked a filter object per muffled sound and let tinnitus and distant
+// fire overwrite each other.
+includeBuild('../PJM-API') {
+    dependencySubstitution {
+        substitute module('ru.liko.pjmapi:pjmapi') using project(':')
+    }
+}

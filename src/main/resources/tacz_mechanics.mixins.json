@@ -21,7 +21,6 @@
     "client": [
     "GunLightEngineMixin",
     "MoonriseGunLightMixin",
-    "SoundEngineMixin",
     "SoundPlayManagerMixin",
     "TweaksSoundPlayManagerMixin",
     "HideHitMarkersMixin",

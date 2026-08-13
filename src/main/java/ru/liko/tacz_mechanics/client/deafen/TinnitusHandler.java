@@ -17,7 +17,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import ru.liko.tacz_mechanics.Config;
 import ru.liko.tacz_mechanics.TaczMechanics;
 import ru.liko.tacz_mechanics.client.freeaim.RecoilSource;
-import ru.liko.tacz_mechanics.client.sound.SoundFilterRegistry;
+import ru.liko.pjmapi.api.client.SoundFilters;
 import ru.liko.tacz_mechanics.compat.GunAttachments;
 
 /**
@@ -27,7 +27,7 @@ import ru.liko.tacz_mechanics.compat.GunAttachments;
  * seconds — the price of clearing a building without a suppressor or ear protection. Outdoors the
  * blast has nowhere to bounce, so nothing happens.
  *
- * <p>Reuses what the mod already has: the low-pass path from {@link SoundFilterRegistry} for the
+ * <p>Reuses what the mod already has: the low-pass path from {@link SoundFilters} for the
  * deafness, and the suppression post-chain (see {@code SuppressionRenderer}) for the visual haze.
  */
 @EventBusSubscriber(modid = TaczMechanics.MODID, value = Dist.CLIENT)
@@ -119,10 +119,16 @@ public final class TinnitusHandler {
         if (level < SILENT || instance instanceof TinnitusSoundInstance) {
             return;
         }
-        float muffle = level * (float) Config.Tinnitus.muffleStrength;
-        if (muffle > 0.01f) {
-            SoundFilterRegistry.register(instance, muffle);
-        }
+        SoundFilters.attach(instance, SoundFilters.muffle(TinnitusHandler::currentMuffle));
+    }
+
+    /**
+     * Текущая степень приглушения. Читается фильтром каждый тик, поэтому длинный звук,
+     * начавшийся при звоне в ушах, проясняется по мере того как слух возвращается.
+     * Раньше значение замораживалось на старте звука и висело до самого его конца.
+     */
+    private static double currentMuffle() {
+        return level < SILENT ? 0d : level * Config.Tinnitus.muffleStrength;
     }
 
     /** Raw ringing level, for the looping whine's own volume. */

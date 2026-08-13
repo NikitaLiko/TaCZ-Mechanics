@@ -27,6 +27,14 @@ versionRange = "[1.21.1,1.22)"
 ordering = "NONE"
 side = "BOTH"
 
+# Приглушение звуков через OpenAL EFX (контузия, дальний выстрел) — в PJM-API.
+[[dependencies."tacz_mechanics"]]
+modId = "pjmapi"
+type = "required"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
 [[dependencies."tacz_mechanics"]]
 modId = "veil"
 type = "optional"
