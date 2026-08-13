@@ -36,9 +36,13 @@ public class FreeAimGunModelMixin {
         }
         try {
             FreeAimHandler handler = FreeAimHandler.getInstance();
-            float pitchOffset = handler.getEffectivePitch(partialTick);
-            float yawOffset = handler.getEffectiveYaw(partialTick);
-            if (Math.abs(pitchOffset) < 0.001f && Math.abs(yawOffset) < 0.001f) {
+            float pitchOffset = handler.getVisualPitch(partialTick);
+            float yawOffset = handler.getVisualYaw(partialTick);
+            // Push-back and roll come from the recoil channel alone: sway must not shove the gun around.
+            float kickback = handler.getRecoilPitch(partialTick) * (float) Config.FreeAim.recoilKickback;
+            float roll = handler.getRecoilYaw(partialTick) * (float) Config.FreeAim.recoilRoll;
+            if (Math.abs(pitchOffset) < 0.001f && Math.abs(yawOffset) < 0.001f
+                    && Math.abs(kickback) < 0.0001f && Math.abs(roll) < 0.001f) {
                 return;
             }
 
@@ -50,7 +54,10 @@ public class FreeAimGunModelMixin {
             poseStack.translate(0, pivotY, pivotZ);
             poseStack.mulPose(Axis.XP.rotationDegrees(-pitchOffset));
             poseStack.mulPose(Axis.YP.rotationDegrees(yawOffset));
+            poseStack.mulPose(Axis.ZP.rotationDegrees(roll));
             poseStack.translate(0, -pivotY, -pivotZ);
+            // +Z is toward the camera here, so a positive kick pulls the gun back into the shoulder.
+            poseStack.translate(0, 0, kickback);
         } catch (Exception ignored) {
             if (taczMechanics$pushed) {
                 try { poseStack.popPose(); } catch (Exception e2) {}

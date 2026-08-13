@@ -59,7 +59,8 @@ public class TaczEventHandler {
         );
 
         ImpactFxSender.send(serverLevel, event.getHitResult().getLocation(),
-            event.getHitResult().getDirection(), event.getState(), ImpactFxSender.HIT);
+            event.getHitResult().getDirection(), event.getState(),
+            ImpactFxSender.HIT * ImpactFxSender.scaleForDamage(damage));
         sendImpactSuppression(serverLevel, event.getHitResult().getLocation(), bullet.getOwner());
     }
 

@@ -44,22 +44,12 @@ public class BulletInteractionsManager extends BaseDataManager<BulletInteraction
         for (var entry : interactions.entrySet()) {
             BulletInteractions.BlockInteraction interaction = entry.getValue();
             
-            if (!matchesTarget(interaction.target(), gunId, ammoId, damage)) {
-                debugTrace("'{}' rejected: target mismatch (gun={}, ammo={}, damage={})",
-                    entry.getKey(), gunId, ammoId, damage);
+            if (!matches(interaction, level, gunId, ammoId, damage, result, state)) {
+                debugTrace("'{}' rejected: target/block mismatch (gun={}, ammo={}, damage={}, block={})",
+                    entry.getKey(), gunId, ammoId, damage, state.getBlock());
                 continue;
             }
-            
-            if (!interaction.blocks().isEmpty()) {
-                boolean matches = interaction.blocks().stream()
-                    .anyMatch(b -> b.test(level, result.getBlockPos(), state));
-                if (!matches) {
-                    debugTrace("'{}' rejected: block {} not in allowed list",
-                        entry.getKey(), state.getBlock());
-                    continue;
-                }
-            }
-            
+
             BulletInteractions.PierceSettings pierce = interaction.pierce();
             String reason = pierceRejectionReason(level, result.getBlockPos(), state, damage, distance, pierce, random);
             if (reason != null) {
@@ -72,6 +62,29 @@ public class BulletInteractionsManager extends BaseDataManager<BulletInteraction
         }
         
         return null;
+    }
+
+    /**
+     * True when some interaction is written for this gun/ammo/block combination, no matter
+     * whether its own gates (chance, hardness, distance) let the shot through. Callers use
+     * this to keep generic fallbacks away from blocks that are explicitly configured.
+     */
+    public boolean hasBlockRuleFor(Level level,
+                                  ResourceLocation gunId,
+                                  ResourceLocation ammoId,
+                                  float damage,
+                                  BlockHitResult result,
+                                  BlockState state) {
+        return byType(BulletInteractions.BlockInteraction.class).values().stream()
+            .anyMatch(i -> matches(i, level, gunId, ammoId, damage, result, state));
+    }
+
+    private boolean matches(BulletInteractions.BlockInteraction interaction, Level level,
+                            ResourceLocation gunId, ResourceLocation ammoId, float damage,
+                            BlockHitResult result, BlockState state) {
+        if (!matchesTarget(interaction.target(), gunId, ammoId, damage)) return false;
+        if (interaction.blocks().isEmpty()) return true;
+        return interaction.blocks().stream().anyMatch(b -> b.test(level, result.getBlockPos(), state));
     }
 
     private void debugTrace(String fmt, Object... args) {

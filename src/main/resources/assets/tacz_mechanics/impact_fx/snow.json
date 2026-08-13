@@ -72,6 +72,30 @@
         "EBFCFF",
         "DCEBEF"
       ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 7,
+      "life": 18,
+      "size": {
+        "from": 0.07,
+        "to": 0.32
+      },
+      "alpha": 0.6,
+      "fadeOut": 9,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.24
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
+      "colors": [
+        "E8F5F7",
+        "EBFCFF",
+        "DCEBEF"
+      ]
     }
   ]
 }

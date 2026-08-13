@@ -1,9 +1,31 @@
 {
   "caliber_id": "tacz:556x45",
   "layers": [
-    { "sound": "tacz_mechanics:distant/5.56x45mm/close",   "volume": 0.9 },
-    { "sound": "tacz_mechanics:distant/5.56x45mm/mid",     "volume": 0.7 },
-    { "sound": "tacz_mechanics:distant/5.56x45mm/far",     "volume": 0.5 },
-    { "sound": "tacz_mechanics:distant/5.56x45mm/veryfar", "volume": 0.3 }
+    {
+      "sound": "tacz_mechanics:distant/5.56x45mm/close",
+      "volume": 0.9
+    },
+    {
+      "sound": "tacz_mechanics:distant/5.56x45mm/mid",
+      "volume": 0.7
+    },
+    {
+      "sound": "tacz_mechanics:distant/5.56x45mm/far",
+      "volume": 0.5
+    },
+    {
+      "sound": "tacz_mechanics:distant/5.56x45mm/veryfar",
+      "volume": 0.3
+    }
+  ],
+  "suppressed_layers": [
+    {
+      "sound": "tacz_mechanics:distant/sd/556",
+      "volume": 0.6
+    },
+    {
+      "sound": "tacz_mechanics:distant/sd/556",
+      "volume": 0.28
+    }
   ]
 }

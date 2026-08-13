@@ -1,0 +1,24 @@
+{
+  "event": "bubble_trail",
+  "layers": [
+    {
+      "sprites": "bubble",
+      "count": 1,
+      "life": 26,
+      "size": {
+        "from": 0.13,
+        "to": 0.17
+      },
+      "alpha": 0.85,
+      "fadeOut": 13,
+      "offset": 0.0,
+      "motion": {
+        "velocity": 0.012,
+        "spreadNormal": 0.008,
+        "radial": 0.05
+      },
+      "gravity": 0.004,
+      "drag": 0.93
+    }
+  ]
+}

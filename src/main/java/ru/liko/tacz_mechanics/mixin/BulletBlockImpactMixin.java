@@ -31,6 +31,7 @@ import ru.liko.tacz_mechanics.data.manager.BulletParticlesManager;
 import ru.liko.tacz_mechanics.data.manager.BulletSoundsManager;
 import ru.liko.tacz_mechanics.mixininterface.EntityKineticBulletImpactState;
 import ru.liko.tacz_mechanics.particle.ImpactFxSender;
+import ru.liko.tacz_mechanics.particle.ModParticles;
 import ru.liko.tacz_mechanics.mixininterface.EntityKineticBulletStartPosAccessor;
 import ru.liko.tacz_mechanics.util.PierceGeometry;
 
@@ -210,7 +211,7 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
                     BulletParticlesManager.BlockParticleType.PIERCE,
                     serverLevel, this.gunId, this.ammoId, damage, result, state);
                 ImpactFxSender.send(serverLevel, hitVec, result.getDirection(), state,
-                    ImpactFxSender.PIERCE_ENTRY);
+                    ImpactFxSender.PIERCE_ENTRY * ImpactFxSender.scaleForDamage(damage));
             }
             if (pierce.spawnSounds()) {
                 BulletSoundsManager.INSTANCE.handleBlockSound(
@@ -237,7 +238,8 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
             taczMechanics$spawnBulletHole(serverExitLevel, blockPos, exitPoint, exitFace);
             // Spall on the far side: weaker than the entry, and thrown out of the exit face.
             if (pierce.spawnParticles()) {
-                ImpactFxSender.send(serverExitLevel, exitPoint, exitFace, state, ImpactFxSender.PIERCE_EXIT);
+                ImpactFxSender.send(serverExitLevel, exitPoint, exitFace, state,
+                    ImpactFxSender.PIERCE_EXIT * ImpactFxSender.scaleForDamage(damage));
             }
         }
 
@@ -350,7 +352,11 @@ public abstract class BulletBlockImpactMixin implements EntityKineticBulletImpac
                 serverLevel, this.gunId, this.ammoId, damage, result, state);
             BulletParticlesManager.INSTANCE.handleBlockParticle(BulletParticlesManager.BlockParticleType.RICOCHET,
                 serverLevel, this.gunId, this.ammoId, damage, result, state);
-            ImpactFxSender.send(serverLevel, hitVec, face, state, ImpactFxSender.RICOCHET);
+            float ricochetStrength = ImpactFxSender.RICOCHET * ImpactFxSender.scaleForDamage(damage);
+            ImpactFxSender.send(serverLevel, hitVec, face, state, ricochetStrength);
+            // Sparks trailing away along the bounce, which the surface-normal burst cannot show.
+            ImpactFxSender.sendDirected(serverLevel, ModParticles.RICOCHET_STREAK.get(),
+                hitVec, newVelocity, ricochetStrength);
         }
 
         taczMechanics$debugRicochet("ricochet#%d speed=%.3f->%.3f angle=%.2f chanceRoll=%.3f",

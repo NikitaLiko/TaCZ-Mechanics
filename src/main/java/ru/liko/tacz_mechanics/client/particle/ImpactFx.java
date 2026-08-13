@@ -21,13 +21,23 @@ import java.util.Locale;
  * Minecraft units at authoring time: distances in blocks, times in ticks, {@code gravity} in
  * blocks/tick². Tuning happens by editing the JSON and pressing F3+T — nothing here needs a rebuild.
  */
-public record ImpactFx(List<BlockTestable> blocks, int priority, List<Layer> layers) {
+public record ImpactFx(List<BlockTestable> blocks, int priority, String event, List<Layer> layers) {
 
     public static final Codec<ImpactFx> CODEC = RecordCodecBuilder.create(instance -> instance.group(
         CodecUtils.strictOptionalFieldOf(Codec.list(BlockTestable.CODEC), "blocks", List.of()).forGetter(ImpactFx::blocks),
         CodecUtils.strictOptionalFieldOf(Codec.INT, "priority", 0).forGetter(ImpactFx::priority),
+        CodecUtils.strictOptionalFieldOf(Codec.STRING, "event", "").forGetter(ImpactFx::event),
         Codec.list(Layer.CODEC).fieldOf("layers").forGetter(ImpactFx::layers)
     ).apply(instance, ImpactFx::new));
+
+    /**
+     * Effects tied to a moment rather than to a surface — a ricochet streak, an underwater bubble
+     * trail. They are looked up by name and kept out of the block-material matching, where their
+     * empty block list would otherwise make them a catch-all.
+     */
+    public boolean isEvent() {
+        return !event.isEmpty();
+    }
 
     /** An empty block list is the catch-all fallback; give those files a low priority. */
     public boolean matches(Level level, BlockPos pos, BlockState state) {
@@ -56,27 +66,40 @@ public record ImpactFx(List<BlockTestable> blocks, int priority, List<Layer> lay
      * directions across the surface. Mirrors MTS {@code initialVelocity}/{@code spreadRandomness},
      * whose X and Z spreads are always equal in the official configs.
      */
-    public record Motion(double velocity, double spreadNormal, double spreadTangent) {
+    public record Motion(double velocity, double spreadNormal, double spreadTangent, double radial) {
         public static final Codec<Motion> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             CodecUtils.strictOptionalFieldOf(Codec.DOUBLE, "velocity", 0.0).forGetter(Motion::velocity),
             CodecUtils.strictOptionalFieldOf(Codec.DOUBLE, "spreadNormal", 0.0).forGetter(Motion::spreadNormal),
-            CodecUtils.strictOptionalFieldOf(Codec.DOUBLE, "spreadTangent", 0.0).forGetter(Motion::spreadTangent)
+            CodecUtils.strictOptionalFieldOf(Codec.DOUBLE, "spreadTangent", 0.0).forGetter(Motion::spreadTangent),
+            CodecUtils.strictOptionalFieldOf(Codec.DOUBLE, "radial", 0.0).forGetter(Motion::radial)
         ).apply(instance, Motion::new));
 
-        public static final Motion NONE = new Motion(0.0, 0.0, 0.0);
+        public static final Motion NONE = new Motion(0.0, 0.0, 0.0, 0.0);
+
+        /** Slowest particle of a radial skirt, as a fraction of {@link #radial}. */
+        private static final double RADIAL_MIN = 0.55;
 
         /**
          * Draws one launch velocity in the struck face's frame. The normal is assumed unit length;
          * the tangent basis is built from whichever world axis is least parallel to it, so the
          * math holds for floors and ceilings as well as walls.
+         *
+         * <p>{@code radial} throws the particle outward along the surface in a uniformly random
+         * direction — the skirt of dust that runs away from an impact. It is sampled in polar form
+         * on purpose: two independent {@code spreadTangent} draws give a square spread that bunches
+         * along its diagonals and leaves a pile of nearly motionless particles at the centre.
          */
         public Vec3 sample(Vec3 normal, RandomSource random) {
             Vec3 helper = Math.abs(normal.y) > 0.99 ? new Vec3(1.0, 0.0, 0.0) : new Vec3(0.0, 1.0, 0.0);
             Vec3 u = normal.cross(helper).normalize();
             Vec3 v = normal.cross(u).normalize();
+
+            double angle = random.nextDouble() * Math.PI * 2.0;
+            double speed = radial * (RADIAL_MIN + random.nextDouble() * (1.0 - RADIAL_MIN));
+
             return normal.scale(velocity + jitter(random, spreadNormal))
-                .add(u.scale(jitter(random, spreadTangent)))
-                .add(v.scale(jitter(random, spreadTangent)));
+                .add(u.scale(Math.cos(angle) * speed + jitter(random, spreadTangent)))
+                .add(v.scale(Math.sin(angle) * speed + jitter(random, spreadTangent)));
         }
 
         private static double jitter(RandomSource random, double amount) {

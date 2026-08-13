@@ -72,6 +72,7 @@ public class DistantFireEventHandler {
         }
 
         String caliberId = ammoId.toString();
+        boolean suppressed = GunAttachments.isSilenced(gunStack);
         Optional<DistantFireSound> maybeSound = DistantFireRegistry.INSTANCE.resolve(caliberId);
         if (maybeSound.isEmpty()) {
             if (Config.debug) {
@@ -121,7 +122,7 @@ public class DistantFireEventHandler {
                 continue;
             }
 
-            Resolution resolution = DistantFireResolver.resolve(sound, bands, distance);
+            Resolution resolution = DistantFireResolver.resolve(sound, bands, distance, suppressed);
             if (resolution.isSilent()) {
                 silentSkip++;
                 continue;
@@ -136,7 +137,7 @@ public class DistantFireEventHandler {
                 LAST_SENT_TICK.put(key, tick);
             }
 
-            DistantFireSoundPacket packet = buildPacket(sound, resolution, shotPos, master, soundRange);
+            DistantFireSoundPacket packet = buildPacket(sound, resolution, shotPos, master, soundRange, suppressed);
             if (packet == null) {
                 silentSkip++;
                 continue;
@@ -159,14 +160,14 @@ public class DistantFireEventHandler {
     }
 
     private static DistantFireSoundPacket buildPacket(DistantFireSound sound, Resolution resolution,
-                                                      Vec3 pos, float master, float soundRange) {
+                                                      Vec3 pos, float master, float soundRange, boolean suppressed) {
         ResourceLocation primary;
         float primaryVol;
         if (resolution.hasPrimary()) {
-            primary = sound.layer(resolution.primaryIndex()).sound();
+            primary = sound.layer(resolution.primaryIndex(), suppressed).sound();
             primaryVol = resolution.primaryVolume() * master;
         } else if (resolution.hasSecondary()) {
-            primary = sound.layer(resolution.secondaryIndex()).sound();
+            primary = sound.layer(resolution.secondaryIndex(), suppressed).sound();
             primaryVol = resolution.secondaryVolume() * master;
             return new DistantFireSoundPacket(pos.x, pos.y, pos.z, 1.0f, primary, primaryVol,
                 Optional.empty(), 0f, soundRange);
@@ -177,7 +178,7 @@ public class DistantFireEventHandler {
         Optional<ResourceLocation> secondary = Optional.empty();
         float secondaryVol = 0f;
         if (resolution.hasPrimary() && resolution.hasSecondary()) {
-            secondary = Optional.of(sound.layer(resolution.secondaryIndex()).sound());
+            secondary = Optional.of(sound.layer(resolution.secondaryIndex(), suppressed).sound());
             secondaryVol = resolution.secondaryVolume() * master;
         }
         return new DistantFireSoundPacket(pos.x, pos.y, pos.z, 1.0f,

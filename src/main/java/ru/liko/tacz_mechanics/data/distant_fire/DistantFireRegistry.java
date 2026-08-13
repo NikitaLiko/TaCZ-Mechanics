@@ -44,7 +44,10 @@ public final class DistantFireRegistry {
             "default",
             "127x99mm", "12gauge", "30-06", "338lapua", "45acp",
             "545x39mm", "556x45mm", "65creedmoor", "762x39",
-            "762x51mm", "762x54mmr", "9x19mm", "lmg", "revolver");
+            "762x51mm", "762x54mmr", "9x19mm", "lmg", "revolver",
+            // suffuse pack calibers, reusing existing JSRS sound groups
+            "12.7x108mm", "12.7x55", "14.5x114mm", "boomstickshot", "338nm",
+            "6.8tvcm", "4.73x33mm", "6x35mm", "7.65x20mm");
         Map<String, DistantFireSound> next = new HashMap<>();
         for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
             ResourceLocation id = entry.getKey();

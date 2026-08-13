@@ -7,3 +7,7 @@ bin/
 *.iml
 .eclipse/
 .vscode/
+
+# Dev instance and its world/mods, plus crash and launch logs
+run/
+logs/

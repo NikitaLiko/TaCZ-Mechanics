@@ -26,11 +26,11 @@ public final class DistantFireResolver {
     private DistantFireResolver() {
     }
 
-    public static Resolution resolve(DistantFireSound sound, DistantFireBands rawBands, double distance) {
-        DistantFireBands bands = rawBands.clampToLayers(sound.layerCount());
+    public static Resolution resolve(DistantFireSound sound, DistantFireBands rawBands, double distance, boolean suppressed) {
+        DistantFireBands bands = rawBands.clampToLayers(sound.layerCount(suppressed));
         int near = bands.taczNearRange();
         int t = Math.max(0, bands.transitionBlocks());
-        int n = sound.layerCount();
+        int n = sound.layerCount(suppressed);
 
         if (distance <= near - t) {
             return Resolution.SILENT;
@@ -38,27 +38,27 @@ public final class DistantFireResolver {
 
         if (t > 0 && distance < near + t) {
             float ratio = clamp01((float) ((distance - (near - t)) / (2.0 * t)));
-            float vol = ratio * sound.layer(0).volume();
+            float vol = ratio * sound.layer(0, suppressed).volume();
             return new Resolution(-1, 0f, 0, vol);
         }
 
         for (int i = 0; i < n - 1; i++) {
             int bound = bands.rawUpperBound(i);
             if (distance < bound - t) {
-                return new Resolution(i, sound.layer(i).volume(), -1, 0f);
+                return new Resolution(i, sound.layer(i, suppressed).volume(), -1, 0f);
             }
             if (t > 0 && distance < bound + t) {
                 float ratio = clamp01((float) ((distance - (bound - t)) / (2.0 * t)));
-                float curr = (1f - ratio) * sound.layer(i).volume();
-                float next = ratio * sound.layer(i + 1).volume();
+                float curr = (1f - ratio) * sound.layer(i, suppressed).volume();
+                float next = ratio * sound.layer(i + 1, suppressed).volume();
                 return new Resolution(i, curr, i + 1, next);
             }
             if (t == 0 && distance <= bound) {
-                return new Resolution(i, sound.layer(i).volume(), -1, 0f);
+                return new Resolution(i, sound.layer(i, suppressed).volume(), -1, 0f);
             }
         }
 
-        return new Resolution(n - 1, sound.layer(n - 1).volume(), -1, 0f);
+        return new Resolution(n - 1, sound.layer(n - 1, suppressed).volume(), -1, 0f);
     }
 
     private static float clamp01(float v) {

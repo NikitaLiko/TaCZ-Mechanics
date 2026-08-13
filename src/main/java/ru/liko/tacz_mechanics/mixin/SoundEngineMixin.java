@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ru.liko.tacz_mechanics.client.deafen.TinnitusHandler;
 import ru.liko.tacz_mechanics.client.sound.SoundSourceTracker;
 
 import java.lang.reflect.Field;
@@ -58,6 +59,8 @@ public class SoundEngineMixin {
 
     @Inject(method = "play", at = @At("TAIL"))
     private void tacz_mechanics$trackSourceId(SoundInstance instance, CallbackInfo ci) {
+        // Deafness from your own muzzle blast: everything that starts while the ears ring gets low-passed.
+        TinnitusHandler.muffleNewSound(instance);
         try {
             Field field = findChannelsField();
             if (field == null) return;

@@ -733,5 +733,101 @@
       { "type": "file", "name": "tacz_mechanics:distant/lmg/lmg_very_far_distance_4" },
       { "type": "file", "name": "tacz_mechanics:distant/lmg/lmg_very_far_distance_5" }
     ]
+  },
+  "distant/sd/9mm": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/pm9" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/sting9" }
+    ]
+  },
+  "distant/sd/45acp": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/4five" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/ump45" }
+    ]
+  },
+  "distant/sd/556": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mk18" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/tavor" }
+    ]
+  },
+  "distant/sd/545": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/ak12" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/katiba" }
+    ]
+  },
+  "distant/sd/762x39": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/car95" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/promet" }
+    ]
+  },
+  "distant/sd/762x51": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mk20" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/cyrus" }
+    ]
+  },
+  "distant/sd/762x54": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/rahim" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/cyrus" }
+    ]
+  },
+  "distant/sd/65cm": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/emr" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mk20" }
+    ]
+  },
+  "distant/sd/3006": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/m14" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/boltaction_big" }
+    ]
+  },
+  "distant/sd/338": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mar10" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/cmr76" }
+    ]
+  },
+  "distant/sd/heavy": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/cmr76" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mar10" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/boltaction_big" }
+    ]
+  },
+  "distant/sd/shotgun": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/boltaction_big" }
+    ]
+  },
+  "distant/sd/lmg": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mk200" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/lim85" }
+    ]
+  },
+  "distant/sd/revolver": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/rook" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/pm9" }
+    ]
+  },
+  "distant/sd/default": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:distant/sd/mk18" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/ump45" },
+      { "type": "file", "name": "tacz_mechanics:distant/sd/pm9" }
+    ]
+  },
+  "generic.tinnitus": {
+    "sounds": [
+      { "type": "file", "name": "tacz_mechanics:tinnitus", "stream": false }
+    ]
   }
 }

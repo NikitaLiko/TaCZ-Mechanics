@@ -1,9 +1,31 @@
 {
   "caliber_id": "tacz:lmg",
   "layers": [
-    { "sound": "tacz_mechanics:distant/lmg/close",   "volume": 1.0 },
-    { "sound": "tacz_mechanics:distant/lmg/mid",     "volume": 1.2 },
-    { "sound": "tacz_mechanics:distant/lmg/far",     "volume": 1.4 },
-    { "sound": "tacz_mechanics:distant/lmg/veryfar", "volume": 1.6 }
+    {
+      "sound": "tacz_mechanics:distant/lmg/close",
+      "volume": 1.0
+    },
+    {
+      "sound": "tacz_mechanics:distant/lmg/mid",
+      "volume": 1.2
+    },
+    {
+      "sound": "tacz_mechanics:distant/lmg/far",
+      "volume": 1.4
+    },
+    {
+      "sound": "tacz_mechanics:distant/lmg/veryfar",
+      "volume": 1.6
+    }
+  ],
+  "suppressed_layers": [
+    {
+      "sound": "tacz_mechanics:distant/sd/lmg",
+      "volume": 0.65
+    },
+    {
+      "sound": "tacz_mechanics:distant/sd/lmg",
+      "volume": 0.32
+    }
   ]
 }

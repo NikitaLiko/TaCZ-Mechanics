@@ -1,4 +1,8 @@
 ﻿{
   "key.categories.tacz_mechanics": "TaCZ Механика",
-  "key.categories.tacz_mechanics.movement": "TaCZ Движение"
+  "key.categories.tacz_mechanics.movement": "TaCZ Движение",
+  "key.tacz_mechanics.lean_left": "Наклон влево",
+  "key.tacz_mechanics.lean_right": "Наклон вправо",
+  "key.tacz_mechanics.sit": "Сесть / Слайд",
+  "key.tacz_mechanics.prone": "Лечь / Ползти"
 }

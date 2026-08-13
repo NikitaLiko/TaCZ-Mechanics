@@ -1,9 +1,31 @@
 {
   "caliber_id": "tacz:338",
   "layers": [
-    { "sound": "tacz_mechanics:distant/338lapua/close",   "volume": 1.0 },
-    { "sound": "tacz_mechanics:distant/338lapua/mid",     "volume": 0.85 },
-    { "sound": "tacz_mechanics:distant/338lapua/far",     "volume": 0.65 },
-    { "sound": "tacz_mechanics:distant/338lapua/veryfar", "volume": 0.4 }
+    {
+      "sound": "tacz_mechanics:distant/338lapua/close",
+      "volume": 1.0
+    },
+    {
+      "sound": "tacz_mechanics:distant/338lapua/mid",
+      "volume": 0.85
+    },
+    {
+      "sound": "tacz_mechanics:distant/338lapua/far",
+      "volume": 0.65
+    },
+    {
+      "sound": "tacz_mechanics:distant/338lapua/veryfar",
+      "volume": 0.4
+    }
+  ],
+  "suppressed_layers": [
+    {
+      "sound": "tacz_mechanics:distant/sd/338",
+      "volume": 0.7
+    },
+    {
+      "sound": "tacz_mechanics:distant/sd/338",
+      "volume": 0.35
+    }
   ]
 }

@@ -1,9 +1,31 @@
 {
   "caliber_id": "tacz:762x54",
   "layers": [
-    { "sound": "tacz_mechanics:distant/762x54mmr/close",   "volume": 1.0 },
-    { "sound": "tacz_mechanics:distant/762x54mmr/mid",     "volume": 0.8 },
-    { "sound": "tacz_mechanics:distant/762x54mmr/far",     "volume": 0.6 },
-    { "sound": "tacz_mechanics:distant/762x54mmr/veryfar", "volume": 0.35 }
+    {
+      "sound": "tacz_mechanics:distant/762x54mmr/close",
+      "volume": 1.0
+    },
+    {
+      "sound": "tacz_mechanics:distant/762x54mmr/mid",
+      "volume": 0.8
+    },
+    {
+      "sound": "tacz_mechanics:distant/762x54mmr/far",
+      "volume": 0.6
+    },
+    {
+      "sound": "tacz_mechanics:distant/762x54mmr/veryfar",
+      "volume": 0.35
+    }
+  ],
+  "suppressed_layers": [
+    {
+      "sound": "tacz_mechanics:distant/sd/762x54",
+      "volume": 0.6
+    },
+    {
+      "sound": "tacz_mechanics:distant/sd/762x54",
+      "volume": 0.28
+    }
   ]
 }

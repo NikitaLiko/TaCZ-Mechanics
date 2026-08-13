@@ -9,6 +9,7 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.DirectionalPayloadHandler;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
+import ru.liko.tacz_mechanics.Config;
 import ru.liko.tacz_mechanics.TaczMechanics;
 import ru.liko.tacz_mechanics.movement.MovementPosture;
 import ru.liko.tacz_mechanics.movement.MovementStateManager;
@@ -80,7 +81,17 @@ public class ModNetworking {
                     PacketDistributor.sendToPlayer(serverPlayer, new MovementStatePayload(oldCode));
                     return;
                 }
+                // Client cooldowns are advisory only — enforce the posture transition rate here so
+                // modified clients (or packet spam) can't chain лег/сел faster than honest ones.
+                // 80% of the configured cooldown leaves headroom for latency jitter.
+                boolean postureChanged = oldCode / 10 != payload.stateCode() / 10;
+                long minInterval = (long) (Math.min(Config.Movement.sitCooldown, Config.Movement.proneCooldown) * 1000 * 0.8);
+                if (postureChanged && state.sincePostureChange() < minInterval) {
+                    PacketDistributor.sendToPlayer(serverPlayer, new MovementStatePayload(oldCode));
+                    return;
+                }
                 state.readCode(payload.stateCode());
+                MovementPosture.applyForcedPose(serverPlayer, state);
                 serverPlayer.refreshDimensions();
                 MovementPosture.logHitbox("SERVER", serverPlayer, state);
 
@@ -113,6 +124,12 @@ public class ModNetworking {
                 }
             }
         });
+    }
+
+    /** Server → everyone: force a player's movement state (rollback / server-side cancel). */
+    public static void syncMovementState(ServerPlayer player, int stateCode) {
+        PacketDistributor.sendToPlayer(player, new MovementStatePayload(stateCode));
+        PacketDistributor.sendToAllPlayers(new MovementStateBroadcastPayload(player.getUUID(), stateCode));
     }
 
     public static void sendMovementStateToServer(int stateCode) {

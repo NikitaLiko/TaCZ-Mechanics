@@ -10,7 +10,13 @@ import net.minecraft.world.phys.Vec3;
  */
 public final class LeanCollision {
 
-    public static final double OFFSET_SCALE = 0.6;
+    /**
+     * Sideways reach of a full lean, in blocks. The single number the whole lean derives from —
+     * eye offset, body tilt and hitbox all follow it, so they cannot be tuned apart.
+     */
+    public static double offsetScale() {
+        return ru.liko.tacz_mechanics.Config.Movement.leanDistance;
+    }
 
     private LeanCollision() {
     }
@@ -65,8 +71,8 @@ public final class LeanCollision {
         double eyeY = player.getY() + player.getEyeHeight();
         Vec3 baseEye = new Vec3(player.getX(), eyeY, player.getZ());
         double yawRad = Math.toRadians(player.getYRot());
-        double ox = -probeOffset * OFFSET_SCALE * Math.cos(yawRad);
-        double oz = -probeOffset * OFFSET_SCALE * Math.sin(yawRad);
+        double ox = -probeOffset * offsetScale() * Math.cos(yawRad);
+        double oz = -probeOffset * offsetScale() * Math.sin(yawRad);
         Vec3 leaned = baseEye.add(ox, 0, oz);
         // Must be at least as large as vanilla Entity#isInWall suffocation box
         // (width * 0.8 around eye), plus a small safety margin to avoid damage.

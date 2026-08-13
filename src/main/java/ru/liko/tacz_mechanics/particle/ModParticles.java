@@ -45,6 +45,14 @@ public final class ModParticles {
             }
         });
 
+    /** Sparks thrown along the direction the bullet bounced off to, not along the face normal. */
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> RICOCHET_STREAK =
+        TYPES.register("ricochet_streak", () -> new SimpleParticleType(true));
+
+    /** Spawned by the bullet itself while it travels underwater; never crosses the network. */
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BUBBLE_TRAIL =
+        TYPES.register("bubble_trail", () -> new SimpleParticleType(true));
+
     /** Short name used in {@code impact_fx} JSON -> the type whose sprite set backs it. */
     public static final Map<String, DeferredHolder<ParticleType<?>, SimpleParticleType>> SPRITE_FAMILIES =
         new LinkedHashMap<>();
@@ -73,6 +81,9 @@ public final class ModParticles {
         family("bang");
         family("flash");
         family("fire");
+        family("sparkbig");
+        family("tracer");
+        family("bubble");
     }
 
     private static void family(String name) {

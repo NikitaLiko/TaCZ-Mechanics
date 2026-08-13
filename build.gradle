@@ -81,6 +81,9 @@ neoForge {
         }
     }
 
+    // Vec3/AABB/Mth are plain math classes, so unit tests can use them without booting the game.
+    addModdingDependenciesTo(sourceSets.test)
+
     mods {
         // define mod <-> source bindings
         // these are used to tell the game which sources are for which mod
@@ -101,6 +104,15 @@ dependencies {
     runtimeOnly('com.tacz.guns:tacz') {
         transitive = false
     }
+
+    // Ragdoll bodies: we need BoneHittable and BonePart at compile time.
+    compileOnly 'ru.liko.pjmragdoll:pjmragdoll'
+    runtimeOnly('ru.liko.pjmragdoll:pjmragdoll') {
+        transitive = false
+    }
+
+    // SuperbWarfare compat is optional at runtime, so the built jar is enough to compile against.
+    compileOnly fileTree(dir: '../_built', include: 'superbwarfare-*.jar')
 
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'

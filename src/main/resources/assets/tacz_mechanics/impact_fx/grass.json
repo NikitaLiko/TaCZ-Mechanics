@@ -101,6 +101,35 @@
         "99958F",
         "DDDBD8"
       ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 5,
+      "life": 18,
+      "size": {
+        "from": 0.07,
+        "to": 0.26
+      },
+      "alpha": 0.55,
+      "fadeOut": 9,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.2
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
+      "colors": [
+        "C4C0BB",
+        "BAB0A7",
+        "B9B4AD",
+        "D2D0CD",
+        "ADA79F",
+        "A39A8D",
+        "99958F",
+        "DDDBD8"
+      ]
     }
   ]
 }

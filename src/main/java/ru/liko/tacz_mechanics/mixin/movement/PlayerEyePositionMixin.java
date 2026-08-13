@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ru.liko.tacz_mechanics.Config;
+import ru.liko.tacz_mechanics.hitbox.SkeletonPose;
 import ru.liko.tacz_mechanics.movement.LeanCollision;
 import ru.liko.tacz_mechanics.movement.MovementStateManager;
 import ru.liko.tacz_mechanics.movement.PlayerState;
@@ -47,8 +48,17 @@ public abstract class PlayerEyePositionMixin {
         if (probeOffset != 0) {
             float yaw = player.getYRot();
             double radians = Math.toRadians(yaw);
-            offsetX += -probeOffset * LeanCollision.OFFSET_SCALE * Math.cos(radians);
-            offsetZ += -probeOffset * LeanCollision.OFFSET_SCALE * Math.sin(radians);
+            offsetX += -probeOffset * LeanCollision.offsetScale() * Math.cos(radians);
+            offsetZ += -probeOffset * LeanCollision.offsetScale() * Math.sin(radians);
+
+            // When the body rolls, leaning is a rotation about the feet, not a sideways slide. The
+            // sideways part is identical either way, but a rotation also lowers the eye — and without
+            // that drop the camera peeks over cover the model's head is still hidden behind.
+            if (Config.Movement.leanBodyRoll) {
+                float eyeHeight = Math.max(player.getEyeHeight(), 0.1f);
+                float roll = SkeletonPose.leanRoll(player, state.getProbeOffset());
+                offsetY += eyeHeight * (Math.cos(roll) - 1.0);
+            }
         }
 
         if (offsetX != 0 || offsetY != 0 || offsetZ != 0) {

@@ -8,23 +8,22 @@
   "layers": [
     {
       "sprites": "debris",
-      "count": 6,
-      "life": 50,
+      "count": 3,
+      "life": 15,
       "size": {
-        "from": 0.13,
-        "to": 0.11
+        "from": 0.44,
+        "to": 0.58
       },
       "alpha": 1.0,
-      "fadeOut": 12,
-      "offset": 0.05,
+      "fadeOut": 7,
+      "offset": 0.08,
       "motion": {
-        "velocity": 0.31,
-        "spreadNormal": 0.19,
-        "spreadTangent": 0.14
+        "velocity": 0.15,
+        "spreadNormal": 0.08,
+        "spreadTangent": 0.05
       },
-      "gravity": -0.048,
-      "drag": 0.97,
-      "stopOnGround": true
+      "gravity": -0.01,
+      "drag": 0.92
     },
     {
       "sprites": "smoke",
@@ -67,6 +66,30 @@
       },
       "drag": 0.86,
       "moveTicks": 6,
+      "colors": [
+        "C2A78F",
+        "B39A82",
+        "D2BCA6"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 6,
+      "life": 18,
+      "size": {
+        "from": 0.07,
+        "to": 0.26
+      },
+      "alpha": 0.55,
+      "fadeOut": 9,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.22
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
       "colors": [
         "C2A78F",
         "B39A82",

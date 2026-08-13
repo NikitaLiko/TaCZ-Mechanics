@@ -10,11 +10,21 @@ import ru.liko.tacz_mechanics.Config;
  */
 public final class MovementSource {
 
-    // Converts dimensionless bob amplitude into spring velocity units.
-    private static final float BOB_TICK_SCALE = 0.05f;
+    // Converts dimensionless bob amplitude into spring velocity units. Scaled down together with
+    // BOB_PHASE_RATE so the slower bob keeps roughly the same visible amplitude.
+    private static final float BOB_TICK_SCALE = 0.02f;
     private static final float TWO_PI = (float) (2 * Math.PI);
+    /**
+     * Phase advance per block moved. At 20 ticks/s the pitch term runs at twice this, so the old
+     * rate of 8 put a walk at ~3.5 ticks per cycle and a sprint past the Nyquist limit outright:
+     * the impulse flipped sign almost every tick and aliased into twitching instead of bobbing.
+     */
+    private static final float BOB_PHASE_RATE = 3f;
+    /** Speed above this is a teleport or knockback, not a stride. */
+    private static final float MAX_STRIDE_SPEED = 0.5f;
 
     private float bobPhase = 0f;
+    private float smoothedSpeed = 0f;
     private boolean wasOnGround = true;
 
     public void apply(LocalPlayer player, SwaySpring pitchSpring, SwaySpring yawSpring) {
@@ -28,14 +38,17 @@ public final class MovementSource {
         // Horizontal speed (blocks/tick) from this tick's movement
         double dx = player.getX() - player.xo;
         double dz = player.getZ() - player.zo;
-        float speed = (float) Math.sqrt(dx * dx + dz * dz);
+        float speed = Math.min((float) Math.sqrt(dx * dx + dz * dz), MAX_STRIDE_SPEED);
+        // Per-tick speed is noisy (steps, collisions, slabs); the stride behind it is not.
+        smoothedSpeed += (speed - smoothedSpeed) * 0.3f;
+        speed = smoothedSpeed;
 
         // Walk/sprint bob: advance phase by speed, emit a gentle figure-eight sway
         if (speed > 0.005f && onGround) {
             float amp = player.isSprinting()
                     ? (float) Config.FreeAim.movementSprintScale
                     : (float) Config.FreeAim.movementWalkScale;
-            bobPhase += speed * 8f;
+            bobPhase += speed * BOB_PHASE_RATE;
             // Keep phase bounded to avoid float precision loss over long sessions
             if (bobPhase > TWO_PI) {
                 bobPhase %= TWO_PI;
@@ -58,6 +71,7 @@ public final class MovementSource {
 
     public void reset() {
         bobPhase = 0f;
+        smoothedSpeed = 0f;
         wasOnGround = true;
     }
 }

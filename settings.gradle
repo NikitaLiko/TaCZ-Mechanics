@@ -11,8 +11,16 @@ plugins {
 }
 
 // Include TACZ as composite build for API access
-includeBuild('../../!libs and references/TACZ-1.21.1') {
+includeBuild('../../libs and references/TACZ-1.21.1') {
     dependencySubstitution {
         substitute module('com.tacz.guns:tacz') using project(':')
+    }
+}
+
+// PJM-Ragdooll owns the ragdoll bodies and their bone geometry; we only widen
+// our existing hitbox mixins onto its BoneHittable seam.
+includeBuild('../PJM-Ragdooll') {
+    dependencySubstitution {
+        substitute module('ru.liko.pjmragdoll:pjmragdoll') using project(':')
     }
 }

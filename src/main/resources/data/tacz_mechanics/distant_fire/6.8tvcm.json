@@ -1,0 +1,31 @@
+{
+  "caliber_id": "suffuse:6.8tvcm",
+  "layers": [
+    {
+      "sound": "tacz_mechanics:distant/7.62x51mm/close",
+      "volume": 1.0
+    },
+    {
+      "sound": "tacz_mechanics:distant/7.62x51mm/mid",
+      "volume": 0.8
+    },
+    {
+      "sound": "tacz_mechanics:distant/7.62x51mm/far",
+      "volume": 0.6
+    },
+    {
+      "sound": "tacz_mechanics:distant/7.62x51mm/veryfar",
+      "volume": 0.35
+    }
+  ],
+  "suppressed_layers": [
+    {
+      "sound": "tacz_mechanics:distant/sd/762x51",
+      "volume": 0.6
+    },
+    {
+      "sound": "tacz_mechanics:distant/sd/762x51",
+      "volume": 0.28
+    }
+  ]
+}

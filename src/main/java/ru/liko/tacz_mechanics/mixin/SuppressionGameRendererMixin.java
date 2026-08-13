@@ -6,6 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import ru.liko.tacz_mechanics.client.deafen.TinnitusHandler;
 import ru.liko.tacz_mechanics.client.suppression.SuppressionHandler;
 import ru.liko.tacz_mechanics.client.suppression.SuppressionRenderer;
 
@@ -17,7 +18,7 @@ import ru.liko.tacz_mechanics.client.suppression.SuppressionRenderer;
 public class SuppressionGameRendererMixin {
     @Inject(method = "renderLevel", at = @At("RETURN"))
     private void taczMechanics$afterRenderLevel(DeltaTracker deltaTracker, CallbackInfo ci) {
-        if (!SuppressionHandler.isActive()) return;
+        if (!SuppressionHandler.isActive() && !TinnitusHandler.isActive()) return;
 
         if (!SuppressionRenderer.isReady()) {
             SuppressionRenderer.init();

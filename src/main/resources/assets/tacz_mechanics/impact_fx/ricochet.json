@@ -1,0 +1,46 @@
+{
+  "event": "ricochet",
+  "layers": [
+    {
+      "sprites": "sparkbig",
+      "count": 2,
+      "life": 7,
+      "size": {
+        "from": 0.34,
+        "to": 0.6
+      },
+      "alpha": 1.0,
+      "fadeOut": 4,
+      "offset": 0.12,
+      "bright": true,
+      "animated": true,
+      "motion": {
+        "velocity": 0.22,
+        "spreadNormal": 0.1,
+        "spreadTangent": 0.06
+      },
+      "gravity": -0.01,
+      "drag": 0.9
+    },
+    {
+      "sprites": "tracer",
+      "count": 2,
+      "life": 9,
+      "size": {
+        "from": 0.16,
+        "to": 0.01
+      },
+      "alpha": 1.0,
+      "fadeOut": 5,
+      "offset": 0.1,
+      "bright": true,
+      "motion": {
+        "velocity": 0.55,
+        "spreadNormal": 0.18,
+        "spreadTangent": 0.09
+      },
+      "gravity": -0.02,
+      "drag": 0.93
+    }
+  ]
+}

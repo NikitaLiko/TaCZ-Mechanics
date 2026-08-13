@@ -71,17 +71,16 @@ public class ScopeFlareHandler {
             }
         }
 
-        // Проверяем, есть ли прицел в белом списке
-        boolean isWhitelisted = false;
         String scopeIdStr = scopeId.toString();
-        if (Config.ScopeFlare.whitelistedScopes != null) {
-            for (String whitelisted : Config.ScopeFlare.whitelistedScopes) {
-                if (whitelisted.equals(scopeIdStr)) {
-                    isWhitelisted = true;
-                    break;
-                }
-            }
+
+        // Чёрный список: у этих прицелов вспышки нет никогда
+        if (Config.ScopeFlare.blacklistedScopes != null && Config.ScopeFlare.blacklistedScopes.contains(scopeIdStr)) {
+            return;
         }
+
+        // Проверяем, есть ли прицел в белом списке
+        boolean isWhitelisted = Config.ScopeFlare.whitelistedScopes != null
+                && Config.ScopeFlare.whitelistedScopes.contains(scopeIdStr);
 
         // Если прицела нет в белом списке, проверяем его кратность приближения (zoom)
         if (!isWhitelisted) {

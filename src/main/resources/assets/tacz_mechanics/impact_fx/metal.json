@@ -42,23 +42,23 @@
     },
     {
       "sprites": "sparkcluster",
-      "count": 9,
-      "life": 13,
+      "count": 3,
+      "life": 9,
       "size": {
-        "from": 0.07,
-        "to": 0.02
+        "from": 0.42,
+        "to": 0.68
       },
       "alpha": 1.0,
-      "fadeOut": 6,
-      "offset": 0.08,
+      "fadeOut": 4,
+      "offset": 0.1,
       "bright": true,
       "motion": {
-        "velocity": 0.3,
-        "spreadNormal": 0.26,
-        "spreadTangent": 0.28
+        "velocity": 0.13,
+        "spreadNormal": 0.09,
+        "spreadTangent": 0.07
       },
-      "gravity": -0.035,
-      "drag": 0.94
+      "gravity": -0.012,
+      "drag": 0.9
     },
     {
       "sprites": "bang",
@@ -79,25 +79,6 @@
       "drag": 0.8
     },
     {
-      "sprites": "debris",
-      "count": 3,
-      "life": 27,
-      "size": {
-        "from": 0.06,
-        "to": 0.045
-      },
-      "alpha": 1.0,
-      "fadeOut": 6,
-      "offset": 0.05,
-      "motion": {
-        "velocity": 0.28,
-        "spreadNormal": 0.18,
-        "spreadTangent": 0.18
-      },
-      "gravity": -0.04,
-      "drag": 0.96
-    },
-    {
       "sprites": "smoke",
       "count": 1,
       "life": 10,
@@ -114,6 +95,30 @@
         "spreadTangent": 0.07
       },
       "drag": 0.88,
+      "colors": [
+        "9E9E9E",
+        "B5B5B5",
+        "CCCCCC"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 12,
+      "size": {
+        "from": 0.07,
+        "to": 0.26
+      },
+      "alpha": 0.35,
+      "fadeOut": 6,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.16
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
       "colors": [
         "9E9E9E",
         "B5B5B5",

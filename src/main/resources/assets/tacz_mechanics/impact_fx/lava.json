@@ -25,15 +25,15 @@
     },
     {
       "sprites": "splash",
-      "count": 6,
-      "life": 28,
+      "count": 2,
+      "life": 22,
       "size": {
-        "from": 0.22,
-        "to": 0.17
+        "from": 0.5,
+        "to": 0.7
       },
       "alpha": 1.0,
-      "fadeOut": 10,
-      "offset": 0.03,
+      "fadeOut": 11,
+      "offset": 0.2,
       "bright": true,
       "colors": [
         "FF9A3C",
@@ -42,12 +42,12 @@
         "E85018"
       ],
       "motion": {
-        "velocity": 0.24,
-        "spreadNormal": 0.16,
-        "spreadTangent": 0.12
+        "velocity": 0.16,
+        "spreadNormal": 0.07,
+        "spreadTangent": 0.04
       },
-      "gravity": -0.05,
-      "drag": 0.97
+      "gravity": -0.024,
+      "drag": 0.94
     },
     {
       "sprites": "fire",

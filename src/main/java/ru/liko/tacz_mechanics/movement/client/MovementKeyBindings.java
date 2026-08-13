@@ -31,9 +31,25 @@ public class MovementKeyBindings {
         CATEGORY
     );
 
+    public static final KeyMapping SIT_KEY = new KeyMapping(
+        "key.tacz_mechanics.sit",
+        InputConstants.Type.KEYSYM,
+        GLFW.GLFW_KEY_C,
+        CATEGORY
+    );
+
+    public static final KeyMapping PRONE_KEY = new KeyMapping(
+        "key.tacz_mechanics.prone",
+        InputConstants.Type.KEYSYM,
+        GLFW.GLFW_KEY_Z,
+        CATEGORY
+    );
+
     @SubscribeEvent
     public static void registerKeyBindings(RegisterKeyMappingsEvent event) {
         event.register(LEAN_LEFT_KEY);
         event.register(LEAN_RIGHT_KEY);
+        event.register(SIT_KEY);
+        event.register(PRONE_KEY);
     }
 }

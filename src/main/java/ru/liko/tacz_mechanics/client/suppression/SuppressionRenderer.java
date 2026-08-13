@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import ru.liko.tacz_mechanics.Config;
 import ru.liko.tacz_mechanics.TaczMechanics;
+import ru.liko.tacz_mechanics.client.deafen.TinnitusHandler;
 import ru.liko.tacz_mechanics.mixin.PostChainAccessor;
 
 import java.util.List;
@@ -53,7 +54,9 @@ public class SuppressionRenderer {
     public static void render(float partialTick) {
         if (!initialized || postChain == null) return;
 
-        float level = SuppressionHandler.getLevel(partialTick);
+        // The chain doubles as the tinnitus haze — same blur/vignette, driven by whichever is stronger.
+        float level = Math.max(SuppressionHandler.getLevel(partialTick),
+            TinnitusHandler.getLevel(partialTick) * (float) Config.Tinnitus.visualStrength);
         if (level < 0.001f) return;
 
         Minecraft mc = Minecraft.getInstance();

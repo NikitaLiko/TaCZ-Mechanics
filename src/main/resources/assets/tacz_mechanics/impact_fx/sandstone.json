@@ -1,0 +1,120 @@
+{
+  "priority": 26,
+  "blocks": [
+    "minecraft:sandstone",
+    "minecraft:sandstone_slab",
+    "minecraft:sandstone_stairs",
+    "minecraft:sandstone_wall",
+    "minecraft:smooth_sandstone",
+    "minecraft:smooth_sandstone_slab",
+    "minecraft:smooth_sandstone_stairs",
+    "minecraft:chiseled_sandstone",
+    "minecraft:cut_sandstone",
+    "minecraft:cut_sandstone_slab",
+    "minecraft:red_sandstone",
+    "minecraft:red_sandstone_slab",
+    "minecraft:red_sandstone_stairs",
+    "minecraft:red_sandstone_wall",
+    "minecraft:smooth_red_sandstone",
+    "minecraft:smooth_red_sandstone_slab",
+    "minecraft:smooth_red_sandstone_stairs",
+    "minecraft:chiseled_red_sandstone",
+    "minecraft:cut_red_sandstone",
+    "minecraft:cut_red_sandstone_slab"
+  ],
+  "layers": [
+    {
+      "sprites": "sand",
+      "count": 3,
+      "life": 16,
+      "size": {
+        "from": 0.46,
+        "to": 0.6
+      },
+      "alpha": 1.0,
+      "fadeOut": 8,
+      "offset": 0.08,
+      "motion": {
+        "velocity": 0.16,
+        "spreadNormal": 0.09,
+        "spreadTangent": 0.06
+      },
+      "gravity": -0.02,
+      "drag": 0.93
+    },
+    {
+      "sprites": "sanddust",
+      "count": 3,
+      "life": 26,
+      "size": {
+        "from": 0.26,
+        "to": 0.8
+      },
+      "alpha": 0.75,
+      "fadeOut": 13,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.1,
+        "spreadNormal": 0.07,
+        "spreadTangent": 0.08
+      },
+      "drag": 0.9,
+      "colors": [
+        "E4D8B0",
+        "D9CCA0",
+        "EFE6C6",
+        "CDBE8E"
+      ]
+    },
+    {
+      "sprites": "sanddust",
+      "count": 4,
+      "life": 150,
+      "size": {
+        "from": 0.36,
+        "to": 0.85
+      },
+      "alpha": 0.32,
+      "fadeOut": 75,
+      "offset": 0.12,
+      "motion": {
+        "velocity": 0.2,
+        "spreadNormal": 0.15,
+        "spreadTangent": 0.12
+      },
+      "drag": 0.86,
+      "moveTicks": 6,
+      "colors": [
+        "E4D8B0",
+        "D9CCA0",
+        "EFE6C6",
+        "CDBE8E"
+      ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 6,
+      "life": 18,
+      "size": {
+        "from": 0.07,
+        "to": 0.28
+      },
+      "alpha": 0.5,
+      "fadeOut": 9,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.22
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
+      "colors": [
+        "E4D8B0",
+        "D9CCA0",
+        "EFE6C6",
+        "CDBE8E"
+      ]
+    }
+  ]
+}

@@ -10,8 +10,11 @@ import ru.liko.tacz_mechanics.Config;
 import ru.liko.tacz_mechanics.TaczMechanics;
 import ru.liko.tacz_mechanics.client.freeaim.FreeAimClientCache;
 import ru.liko.tacz_mechanics.client.freeaim.FreeAimHandler;
+import ru.liko.tacz_mechanics.client.freeaim.RecoilSource;
 import ru.liko.tacz_mechanics.client.sound.SoundFilterRegistry;
 import ru.liko.tacz_mechanics.client.sound.SoundSourceTracker;
+import ru.liko.tacz_mechanics.client.deafen.TinnitusHandler;
+import ru.liko.tacz_mechanics.client.recoil.RecoilDrift;
 import ru.liko.tacz_mechanics.client.suppression.SuppressionHandler;
 
 @EventBusSubscriber(modid = TaczMechanics.MODID, value = Dist.CLIENT)
@@ -22,6 +25,8 @@ public class ClientEvents {
         SoundFilterRegistry.tick();
         FreeAimHandler.getInstance().tick();
         SuppressionHandler.tick();
+        TinnitusHandler.tick();
+        RecoilDrift.tick();
     }
 
     @SubscribeEvent
@@ -42,5 +47,8 @@ public class ClientEvents {
         SoundFilterRegistry.cleanup();
         SoundSourceTracker.cleanup();
         FreeAimClientCache.clear();
+        RecoilSource.clearCache();
+        TinnitusHandler.reset();
+        RecoilDrift.reset();
     }
 }

@@ -72,6 +72,70 @@ class SwaySpringTest {
     }
 
     @Test
+    void substepsKeepStiffRecoilPresetStable() {
+        // Recoil defaults: damping 1.5 > 1 flutters at the Nyquist limit with a single dt=1 step,
+        // which is exactly what substepping exists to fix.
+        SwaySpring s = new SwaySpring();
+        s.setParams(0.9f, 1.5f, 10f);
+        s.addImpulse(2f);
+        float peak = 0f;
+        float worstUndershoot = 0f;
+        for (int i = 0; i < 60; i++) {
+            s.update(1f, 4);
+            peak = Math.max(peak, s.getValue());
+            worstUndershoot = Math.min(worstUndershoot, s.getValue());
+        }
+        assertTrue(peak > 0.5f, "kick must actually be visible, peak was " + peak);
+        assertTrue(worstUndershoot > -0.25f * peak,
+                "must not bounce hard past center, undershoot was " + worstUndershoot);
+        assertEquals(0f, s.getValue(), 0.01f, "kick must settle back to center");
+    }
+
+    @Test
+    void interpolationAnchorsToTickStartWhenSubstepping() {
+        SwaySpring s = new SwaySpring();
+        s.setParams(0.4f, 0.9f, 10f);
+        s.addImpulse(3f);
+        s.update(1f, 4);
+        float afterFirstTick = s.getValue();
+        s.update(1f, 4);
+        assertEquals(afterFirstTick, s.getInterpolated(0f), 1e-6,
+                "pt=0 must be the position at the start of the tick, not the last substep");
+    }
+
+    @Test
+    void softLimitIsExactBelowTheKneeAndCompressesAbove() {
+        SwaySpring s = new SwaySpring();
+        s.setParams(0f, 0f, 10f); // no spring, no damping: position == the raw impulse
+        s.addImpulse(5f);
+        s.update(1f);
+        assertEquals(5f, s.getValue(), 1e-5, "below the knee (8 of 10) the sway must be untouched");
+
+        s.reset();
+        s.addImpulse(9f);
+        s.update(1f);
+        // knee 8, range 2, so 9 maps to 8 + 2*tanh(1/2)
+        assertEquals(8f + 2f * (float) Math.tanh(0.5), s.getValue(), 1e-5);
+        assertTrue(s.getValue() < 9f, "past the knee the travel must compress, not pass through");
+    }
+
+    @Test
+    void slammingTheLimitDoesNotStopTheGunDead() {
+        SwaySpring s = new SwaySpring();
+        s.setParams(0.4f, 0.9f, 4f);
+        s.addImpulse(12f); // far past maxAngle: the old hard wall zeroed velocity here
+        float previous = 0f;
+        float biggestStep = 0f;
+        for (int i = 0; i < 5; i++) {
+            s.update(1f, 4);
+            biggestStep = Math.max(biggestStep, Math.abs(s.getValue() - previous));
+            previous = s.getValue();
+        }
+        assertTrue(s.getValue() <= 4f + 1e-3f, "must still respect maxAngle, was " + s.getValue());
+        assertTrue(biggestStep < 4f, "must ease into the limit, biggest single-tick jump was " + biggestStep);
+    }
+
+    @Test
     void resetZeroesEverything() {
         SwaySpring s = new SwaySpring();
         s.setParams(0.2f, 0.5f, 10f);

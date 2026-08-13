@@ -27,7 +27,7 @@ public abstract class CameraOffsetMixin {
     private void applyCameraOffset(BlockGetter level, Entity entity, boolean detached, 
                                     boolean thirdPersonReverse, float partialTick, CallbackInfo ci) {
         if (!Config.Movement.enabled) return;
-        if (!(entity instanceof Player)) return;
+        if (!(entity instanceof Player player)) return;
         if (detached) return;
 
         double offsetX = 0, offsetY = 0, offsetZ = 0;
@@ -40,6 +40,9 @@ public abstract class CameraOffsetMixin {
             offsetX += -probeOffset * 0.6 * Math.cos(radians);
             offsetZ += -probeOffset * 0.6 * Math.sin(radians);
         }
+
+        // Ease the eye-height jump when a posture toggles (sit/prone).
+        offsetY += MovementClientHandler.postureCameraOffsetY(player);
         
         if (offsetX != 0 || offsetY != 0 || offsetZ != 0) {
             setPosition(position.add(offsetX, offsetY, offsetZ));

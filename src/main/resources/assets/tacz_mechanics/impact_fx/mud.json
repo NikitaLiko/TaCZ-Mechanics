@@ -70,6 +70,30 @@
         "spreadTangent": 0.08
       },
       "drag": 0.88
+    },
+    {
+      "sprites": "smoke",
+      "count": 3,
+      "life": 14,
+      "size": {
+        "from": 0.07,
+        "to": 0.26
+      },
+      "alpha": 0.35,
+      "fadeOut": 7,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.14
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
+      "colors": [
+        "7A6A55",
+        "6B5C49",
+        "8A7A64"
+      ]
     }
   ]
 }

@@ -140,6 +140,31 @@
         "A8916F",
         "D8C9AE"
       ]
+    },
+    {
+      "sprites": "smoke",
+      "count": 4,
+      "life": 18,
+      "size": {
+        "from": 0.07,
+        "to": 0.26
+      },
+      "alpha": 0.45,
+      "fadeOut": 9,
+      "offset": 0.03,
+      "motion": {
+        "velocity": 0.015,
+        "spreadNormal": 0.012,
+        "radial": 0.18
+      },
+      "gravity": -0.002,
+      "drag": 0.9,
+      "colors": [
+        "C9B79A",
+        "B39C7B",
+        "A8916F",
+        "D8C9AE"
+      ]
     }
   ]
 }

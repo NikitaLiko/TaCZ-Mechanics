@@ -13,10 +13,11 @@ import java.util.List;
  * width live in {@link DistantFireBands} and are sent from server config; resolution logic
  * is in {@link DistantFireResolver}.
  */
-public record DistantFireSound(String caliberId, List<DistantFireLayer> layers) {
+public record DistantFireSound(String caliberId, List<DistantFireLayer> layers, List<DistantFireLayer> suppressedLayers) {
     private static final Codec<DistantFireSound> RAW_CODEC = RecordCodecBuilder.create(instance -> instance.group(
         Codec.STRING.fieldOf("caliber_id").forGetter(DistantFireSound::caliberId),
-        DistantFireLayer.CODEC.listOf().fieldOf("layers").forGetter(DistantFireSound::layers)
+        DistantFireLayer.CODEC.listOf().fieldOf("layers").forGetter(DistantFireSound::layers),
+        DistantFireLayer.CODEC.listOf().optionalFieldOf("suppressed_layers", List.of()).forGetter(DistantFireSound::suppressedLayers)
     ).apply(instance, DistantFireSound::new));
 
     public static final Codec<DistantFireSound> CODEC = RAW_CODEC.validate(s -> s.layers().isEmpty()
@@ -25,13 +26,19 @@ public record DistantFireSound(String caliberId, List<DistantFireLayer> layers) 
 
     public DistantFireSound {
         layers = List.copyOf(layers);
+        suppressedLayers = List.copyOf(suppressedLayers);
     }
 
-    public DistantFireLayer layer(int index) {
-        return layers.get(index);
+    /** Effective layer list for the given fire mode; falls back to normal layers when no suppressed set is defined. */
+    public List<DistantFireLayer> layers(boolean suppressed) {
+        return suppressed && !suppressedLayers.isEmpty() ? suppressedLayers : layers;
     }
 
-    public int layerCount() {
-        return layers.size();
+    public DistantFireLayer layer(int index, boolean suppressed) {
+        return layers(suppressed).get(index);
+    }
+
+    public int layerCount(boolean suppressed) {
+        return layers(suppressed).size();
     }
 }
